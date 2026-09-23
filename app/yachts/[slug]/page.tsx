@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
-import { getYacht, YachtDetailPage } from '@/components/yacht-detail'
+import { getYacht } from '@/components/yacht-detail/yacht-data'
+import { YachtDetailPage } from '@/components/yacht-detail/yacht-detail-page'
 
 export function generateStaticParams() {
   return ['sunseeker-74', 'sunseeker-65', 'sunseeker-manhattan-68', 'sunseeker-100'].map((slug) => ({ slug }))

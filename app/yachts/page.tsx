@@ -1,4 +1,6 @@
-import { YachtsPage } from '@/components/luxury-pages'
+import { YachtsPage } from '@/components/yachts-page'
+import { ContactCta } from '@/components/shared/contact-cta'
+import { SiteFooter } from '@/components/shared/site-footer'
 
 export const metadata = {
   title: 'Yachts for Sale | Joanna Savage',
@@ -6,5 +8,15 @@ export const metadata = {
 }
 
 export default function Page() {
-  return <YachtsPage />
+  return (
+    <main>
+      <YachtsPage />
+      <ContactCta
+        title="Found a yacht you love?"
+        subtitle="Get in touch to arrange a viewing or learn more about any vessel."
+        eyebrow="Luxury yachts"
+      />
+      <SiteFooter />
+    </main>
+  )
 }
