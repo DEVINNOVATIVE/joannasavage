@@ -2,36 +2,13 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { SiteHeader } from '../shared/site-header'
+import { VideoHero } from '../shared/video-hero'
 import { Reveal } from '../shared/reveal'
 import type { Yacht } from './yacht-data'
 
 export function YachtHero({ yacht }: { yacht: Yacht }) {
   return (
-    <section className="relative pt-20">
-      <SiteHeader />
-      <div className="mx-auto grid max-w-[1400px] grid-cols-12 items-center gap-5 overflow-hidden">
-        <div className="col-span-2 hidden h-64 opacity-60 md:block">
-          <Image src={yacht.side[0]} alt="Yacht detail" width={400} height={300} className="h-full w-full object-cover" />
-        </div>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.97 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="col-span-12 h-72 sm:h-[390px] md:col-span-8"
-        >
-          <Image src={yacht.hero} alt={yacht.title} width={1200} height={700} className="h-full w-full object-cover" priority />
-        </motion.div>
-        <div className="col-span-2 hidden h-64 opacity-60 md:block">
-          <Image src={yacht.side[1]} alt="Yacht detail" width={400} height={300} className="h-full w-full object-cover" />
-        </div>
-      </div>
-      <div className="flex justify-center py-8">
-        <button className="rounded-full border border-[#192327] px-6 py-2 text-xs transition-colors hover:bg-[#192327] hover:text-white">
-          Fullscreen Gallery
-        </button>
-      </div>
-    </section>
+    <VideoHero title={yacht.title} eyebrow="Private yacht sales" />
   )
 }
 

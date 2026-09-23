@@ -2,12 +2,10 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { SiteHeader } from './shared/site-header'
+import { VideoHero } from './shared/video-hero'
 import { Eyebrow } from './shared/eyebrow'
 import { Reveal } from './shared/reveal'
 
-const servicesHero =
-  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image.png-Bz6Eo1FO3cNO6Mc8LJayQQ6yUrJjn9.jpeg'
 const aviation =
   'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1400&q=85'
 const aircraftInterior =
@@ -22,23 +20,7 @@ const marina =
 export function ServicesPage() {
   return (
     <main className="bg-[#f8f7f4] text-[#192327]">
-      {/* Hero */}
-      <section className="relative flex min-h-[500px] items-center justify-center overflow-hidden text-center text-white">
-        <Image src={servicesHero} alt="Private jets on a runway" fill priority className="object-cover" />
-        <div className="absolute inset-0 bg-black/55" />
-        <SiteHeader />
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-10"
-        >
-          <h1 className="text-5xl font-semibold uppercase sm:text-7xl">Services</h1>
-          <p className="mt-4 text-[10px] uppercase tracking-[0.3em] text-[#d0bc99]">
-            Private aviation · Super yachts · Real estate
-          </p>
-        </motion.div>
-      </section>
+      <VideoHero title="Services" />
 
       {/* Aviation */}
       <section className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-24 sm:px-12 lg:grid-cols-2 lg:gap-24">

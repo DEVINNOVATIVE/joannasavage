@@ -1,40 +1,15 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { SiteHeader } from './shared/site-header'
+import { VideoHero } from './shared/video-hero'
 import { SiteFooter } from './shared/site-footer'
 import { Eyebrow } from './shared/eyebrow'
 import { ContactForm } from './shared/contact-form'
 
-const heroImage =
-  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-SPDSnE0hTpqqHhDYgxZ9CGvmygsfl5.png'
-
 export function ContactPage() {
   return (
     <main className="bg-[#f7f6f3] text-[#192327]">
-      <section className="relative flex min-h-[420px] items-center justify-center overflow-hidden text-center text-white">
-        <img
-          src={heroImage}
-          alt="Luxury yacht from above"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/60" />
-        <SiteHeader />
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-10 px-6"
-        >
-          <p className="mb-4 text-[10px] uppercase tracking-[0.38em] text-[#d0bc99]">
-            Private aviation · Super yachts · Real estate
-          </p>
-          <h1 className="text-4xl font-semibold tracking-tight sm:text-6xl">Get in touch</h1>
-          <p className="mt-4 text-sm text-white/70">
-            We look forward to hearing from you.
-          </p>
-        </motion.div>
-      </section>
+      <VideoHero title="Get in touch" description="We look forward to hearing from you." />
 
       <section className="px-6 py-24 sm:px-10 lg:px-20">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.8fr_1.5fr]">
