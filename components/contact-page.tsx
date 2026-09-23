@@ -1,10 +1,19 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { VideoHero } from './shared/video-hero'
 import { SiteFooter } from './shared/site-footer'
 import { Eyebrow } from './shared/eyebrow'
 import { ContactForm } from './shared/contact-form'
+
+const affiliationLogos = [
+  { name: 'Sunseeker', logo: '/assets/sunskeer.png' },
+  { name: 'Lamborghini', logo: '/assets/lamborghini.png' },
+  { name: 'Gaya', logo: '/assets/gayo.png' },
+  { name: 'Harrods', logo: '/assets/harrods.png' },
+  { name: 'SDG', logo: '/assets/impact-funds.png' },
+]
 
 export function ContactPage() {
   return (
@@ -40,12 +49,17 @@ export function ContactPage() {
               </div>
               <div>
                 <p className="text-[10px] uppercase tracking-[0.22em] text-[#a8865c]">Affiliations</p>
-                <div className="mt-2 flex flex-wrap gap-3 font-serif text-sm italic text-[#192327]/70">
-                  <span>Sunseeker</span>
-                  <span>Lamborghini</span>
-                  <span>Harrods</span>
-                  <span>Gaya</span>
-                  <span>SDG</span>
+                <div className="mt-3 flex flex-wrap gap-3">
+                  {affiliationLogos.map((item) => (
+                    <Image
+                      key={item.name}
+                      src={item.logo}
+                      alt={item.name}
+                      width={64}
+                      height={32}
+                      className="h-7 w-auto object-contain opacity-60 transition-opacity hover:opacity-100"
+                    />
+                  ))}
                 </div>
               </div>
             </div>

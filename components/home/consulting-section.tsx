@@ -5,12 +5,16 @@ import { motion } from 'framer-motion'
 import { Eyebrow } from '../shared/eyebrow'
 import { Reveal } from '../shared/reveal'
 
-const consultingImage =
-  'https://images.unsplash.com/photo-1535378917042-10a22c95931a?auto=format&fit=crop&w=1200&q=85'
-const globeImage =
-  'https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?auto=format&fit=crop&w=1200&q=85'
+const consultingImage = '/assets/proptech-page.jpg'
+const globeImage = '/assets/TCH1.jpeg'
 
-const affiliations = ['Sunseeker', 'Lamborghini', 'Gaya', 'Harrods', 'SDG']
+const affiliations = [
+  { name: 'Sunseeker', logo: '/assets/sunskeer.png' },
+  { name: 'Lamborghini', logo: '/assets/lamborghini.png' },
+  { name: 'Gaya', logo: '/assets/gayo.png' },
+  { name: 'Harrods', logo: '/assets/harrods.png' },
+  { name: 'SDG', logo: '/assets/impact-funds.png' },
+]
 
 export function ConsultingSection() {
   return (
@@ -73,17 +77,24 @@ export function ConsultingSection() {
 
         <div className="mt-16 text-center">
           <h2 className="text-2xl font-semibold text-[#192327]">Exclusive Affiliations</h2>
-          <div className="mt-10 grid grid-cols-2 gap-8 font-serif text-2xl italic text-[#192327] sm:grid-cols-5">
-            {affiliations.map((name, i) => (
-              <motion.span
-                key={name}
+          <div className="mt-10 grid grid-cols-2 items-center gap-8 sm:grid-cols-5">
+            {affiliations.map((item, i) => (
+              <motion.div
+                key={item.name}
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
+                className="flex items-center justify-center"
               >
-                {name}
-              </motion.span>
+                <Image
+                  src={item.logo}
+                  alt={item.name}
+                  width={120}
+                  height={60}
+                  className="h-12 w-auto object-contain opacity-70 transition-opacity hover:opacity-100"
+                />
+              </motion.div>
             ))}
           </div>
         </div>

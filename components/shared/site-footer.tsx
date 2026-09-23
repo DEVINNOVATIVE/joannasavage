@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Eyebrow } from './eyebrow'
 
 export function SiteFooter() {
@@ -6,7 +7,10 @@ export function SiteFooter() {
     <footer className="bg-[#0b1818] px-6 py-16 text-white sm:px-10 lg:px-20">
       <div className="mx-auto grid max-w-6xl gap-12 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <p className="font-serif text-2xl italic">Joanna Savage</p>
+          <div className="flex items-center gap-3">
+            <Image src="/assets/js logo.png" alt="Joanna Savage logo" width={40} height={40} className="rounded-full" />
+            <p className="font-serif text-2xl italic">Joanna Savage</p>
+          </div>
           <p className="mt-4 text-xs leading-6 text-white/50">
             Private aviation, super yachts, real estate and future-forward business consulting.
           </p>
@@ -29,12 +33,23 @@ export function SiteFooter() {
         </div>
         <div>
           <Eyebrow>Affiliations</Eyebrow>
-          <div className="mt-4 flex flex-wrap gap-3 font-serif text-sm italic text-white/60">
-            <span>Sunseeker</span>
-            <span>Lamborghini</span>
-            <span>Harrods</span>
-            <span>Gaya</span>
-            <span>SDG</span>
+          <div className="mt-4 flex flex-wrap gap-4">
+            {[
+              { name: 'Sunseeker', logo: '/assets/sunskeer.png' },
+              { name: 'Lamborghini', logo: '/assets/lamborghini.png' },
+              { name: 'Gaya', logo: '/assets/gayo.png' },
+              { name: 'Harrods', logo: '/assets/harrods.png' },
+              { name: 'SDG', logo: '/assets/impact-funds.png' },
+            ].map((item) => (
+              <Image
+                key={item.name}
+                src={item.logo}
+                alt={item.name}
+                width={80}
+                height={40}
+                className="h-8 w-auto object-contain opacity-50 transition-opacity hover:opacity-90"
+              />
+            ))}
           </div>
         </div>
       </div>

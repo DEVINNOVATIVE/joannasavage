@@ -5,12 +5,9 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Eyebrow } from '../shared/eyebrow'
 
-const aviationImage =
-  'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=85'
-const yachtImage =
-  'https://images.unsplash.com/photo-1540946485063-a40da27545f8?auto=format&fit=crop&w=1200&q=85'
-const realEstateImage =
-  'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85'
+const aviationImage = '/assets/luxury-private-jet.jpg'
+const yachtImage = '/assets/luxury-yacht-.jpg'
+const realEstateImage = '/assets/luxury-real-estate (1).jpg'
 
 const services = [
   {

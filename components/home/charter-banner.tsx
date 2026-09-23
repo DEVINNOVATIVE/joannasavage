@@ -4,8 +4,7 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Eyebrow } from '../shared/eyebrow'
 
-const aboutHeroImage =
-  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-SPDSnE0hTpqqHhDYgxZ9CGvmygsfl5.png'
+const aboutHeroImage = '/assets/luxury-yacht-.jpg'
 
 export function CharterBanner() {
   return (

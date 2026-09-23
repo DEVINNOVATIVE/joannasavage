@@ -6,16 +6,11 @@ import { VideoHero } from './shared/video-hero'
 import { Eyebrow } from './shared/eyebrow'
 import { Reveal } from './shared/reveal'
 
-const aviation =
-  'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1400&q=85'
-const aircraftInterior =
-  'https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&w=900&q=85'
-const yacht =
-  'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?auto=format&fit=crop&w=1400&q=85'
-const property =
-  'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=85'
-const marina =
-  'https://images.unsplash.com/photo-1605281317010-fe5ffe798166?auto=format&fit=crop&w=1400&q=85'
+const aviation = '/assets/luxury-private-jet.jpg'
+const aircraftInterior = '/assets/luxury-private-jet.jpg'
+const yacht = '/assets/luxury-yacht-.jpg'
+const property = '/assets/luxury-real-estate (1).jpg'
+const marina = '/assets/luxury-dubai.jpg'
 
 export function ServicesPage() {
   return (

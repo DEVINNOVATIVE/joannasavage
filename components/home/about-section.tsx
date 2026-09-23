@@ -5,8 +5,7 @@ import { motion } from 'framer-motion'
 import { Eyebrow } from '../shared/eyebrow'
 import { Reveal } from '../shared/reveal'
 
-const portraitImage =
-  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image.png-efmNQUU5E5ZahvvGPgbEcdsQ2Aoq3q.jpeg'
+const portraitImage = '/assets/joanna-savage-black.jpg'
 
 export function AboutSection() {
   return (
