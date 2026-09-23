@@ -18,7 +18,7 @@ export function SiteFooter() {
         <div>
           <Eyebrow>Explore</Eyebrow>
           <ul className="mt-4 space-y-3 text-xs text-white/70">
-            <li><Link href="/#about" className="transition-colors hover:text-[#c5ad89]">About</Link></li>
+            <li><Link href="/about" className="transition-colors hover:text-[#c5ad89]">About</Link></li>
             <li><Link href="/services" className="transition-colors hover:text-[#c5ad89]">Services</Link></li>
             <li><Link href="/yachts" className="transition-colors hover:text-[#c5ad89]">Yachts</Link></li>
             <li><Link href="/contact" className="transition-colors hover:text-[#c5ad89]">Contact</Link></li>

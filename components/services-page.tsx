@@ -7,7 +7,7 @@ import { Eyebrow } from './shared/eyebrow'
 import { Reveal } from './shared/reveal'
 
 const aviation = '/assets/luxury-private-jet.jpg'
-const aircraftInterior = '/assets/luxury-private-jet.jpg'
+const aircraftInterior = '/assets/luxury-dubai.jpg'
 const yacht = '/assets/luxury-yacht-.jpg'
 const property = '/assets/luxury-real-estate (1).jpg'
 const marina = '/assets/luxury-dubai.jpg'

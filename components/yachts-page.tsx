@@ -7,10 +7,10 @@ import { VideoHero } from './shared/video-hero'
 import { Eyebrow } from './shared/eyebrow'
 
 const yachtCards: [string, string, string, string][] = [
-  ['SUNSEEKER 74 SPORT YACHT', 'Dubai', '/assets/luxury-yacht-.jpg', 'sunseeker-74'],
-  ['SUNSEEKER 65 SPORT', 'Dubai', '/assets/luxury-yacht-.jpg', 'sunseeker-65'],
-  ['SUNSEEKER MANHATTAN 68', 'Dubai', '/assets/luxury-yacht-.jpg', 'sunseeker-manhattan-68'],
-  ['SUNSEEKER 100 YACHT', 'London', '/assets/luxury-yacht-.jpg', 'sunseeker-100'],
+  ['SUNSEEKER 74 SPORT YACHT', 'Dubai', 'https://images.pexels.com/photos/163236/luxury-yacht-boat-speed-water-163236.jpeg?auto=compress&cs=tinysrgb&h=650&w=940', 'sunseeker-74'],
+  ['SUNSEEKER 65 SPORT', 'Dubai', 'https://images.pexels.com/photos/30710213/pexels-photo-30710213.jpeg?auto=compress&cs=tinysrgb&h=650&w=940', 'sunseeker-65'],
+  ['SUNSEEKER MANHATTAN 68', 'Dubai', 'https://images.pexels.com/photos/14011948/pexels-photo-14011948.jpeg?auto=compress&cs=tinysrgb&h=650&w=940', 'sunseeker-manhattan-68'],
+  ['SUNSEEKER 100 YACHT', 'London', 'https://images.pexels.com/photos/17860921/pexels-photo-17860921.jpeg?auto=compress&cs=tinysrgb&h=650&w=940', 'sunseeker-100'],
 ]
 
 export function YachtsPage() {
