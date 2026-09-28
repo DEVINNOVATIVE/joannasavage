@@ -23,7 +23,6 @@ export function ContactForm({ selectedService }: { selectedService?: string }) {
       email: String(formData.get('email') || ''),
       telephone: String(formData.get('telephone') || ''),
       message: String(formData.get('message') || ''),
-      humanCheck: String(formData.get('humanCheck') || ''),
       serviceType: selectedService || 'General Enquiry',
     }
 
@@ -62,7 +61,6 @@ export function ContactForm({ selectedService }: { selectedService?: string }) {
       <FormField name="email" label="Email" type="email" required />
       <FormField name="telephone" label="Telephone" />
       <FormField name="message" label="Message" textarea required className="sm:col-span-2" />
-      <FormField name="humanCheck" label="Are you human? 3 + 1 =" required />
 
       <div className="sm:col-span-2">
         <motion.button

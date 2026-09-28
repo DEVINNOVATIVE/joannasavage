@@ -10,11 +10,6 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
     }
 
-    const humanAnswer = String(body.humanCheck || '').trim()
-    if (humanAnswer !== '4') {
-      return NextResponse.json({ error: 'Human verification failed' }, { status: 400 })
-    }
-
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(email)) {
       return NextResponse.json({ error: 'Invalid email address' }, { status: 400 })
