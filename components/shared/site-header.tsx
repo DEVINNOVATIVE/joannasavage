@@ -23,8 +23,8 @@ export function SiteHeader({ transparent = true }: { transparent?: boolean }) {
       }`}
     >
       <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
-        <Image src="/assets/js logo.png" alt="Joanna Savage logo" width={36} height={36} className="rounded-full" />
-        <span className="font-serif text-xl italic tracking-tight">Joanna Savage</span>
+        <Image src="/assets/js logo.png" alt="Joanna Savage logo" width={120} height={120} className="rounded-full" />
+       
       </Link>
       <nav className="hidden items-center gap-8 md:flex">
         {navLinks.map((link) => (
