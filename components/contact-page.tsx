@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { VideoHero } from './shared/video-hero'
@@ -31,6 +32,8 @@ const serviceOptions = [
 ]
 
 export function ContactPage() {
+  const [selectedService, setSelectedService] = useState('General Enquiry')
+
   return (
     <main className="bg-[#f7f6f3] text-[#192327]">
       <VideoHero
@@ -113,12 +116,17 @@ export function ContactPage() {
                 <p className="text-[10px] uppercase tracking-[0.22em] text-[#a8865c]">I&apos;m interested in</p>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {serviceOptions.map((option) => (
-                    <ServicePill key={option} label={option} />
+                    <ServicePill
+                      key={option}
+                      label={option}
+                      selected={selectedService === option}
+                      onClick={() => setSelectedService(option)}
+                    />
                   ))}
                 </div>
               </div>
 
-              <ContactForm />
+              <ContactForm selectedService={selectedService} />
             </div>
           </Reveal>
         </div>
@@ -129,12 +137,25 @@ export function ContactPage() {
   )
 }
 
-function ServicePill({ label }: { label: string }) {
+function ServicePill({
+  label,
+  selected,
+  onClick,
+}: {
+  label: string
+  selected: boolean
+  onClick: () => void
+}) {
   return (
     <motion.button
       type="button"
+      onClick={onClick}
       whileTap={{ scale: 0.96 }}
-      className="rounded-full border border-[#e3e2de] bg-[#f7f6f3] px-4 py-2 text-[11px] font-medium uppercase tracking-[0.1em] text-[#526064] transition-all hover:border-[#d0bc99] hover:bg-white hover:text-[#a8865c]"
+      className={`rounded-full border px-4 py-2 text-[11px] font-medium uppercase tracking-[0.1em] transition-all ${
+        selected
+          ? 'border-[#d0bc99] bg-[#0b1818] text-white'
+          : 'border-[#e3e2de] bg-[#f7f6f3] text-[#526064] hover:border-[#d0bc99] hover:bg-white hover:text-[#a8865c]'
+      }`}
     >
       {label}
     </motion.button>
