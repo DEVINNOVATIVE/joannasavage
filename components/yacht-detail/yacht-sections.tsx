@@ -2,8 +2,8 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useEffect, useCallback } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { MapPin, Ruler, Zap, ArrowLeft, ArrowRight, Check } from 'lucide-react'
 import { SiteHeader } from '../shared/site-header'
 import { Eyebrow } from '../shared/eyebrow'
@@ -12,23 +12,69 @@ import type { Yacht } from './yacht-data'
 
 export function YachtHero({ yacht }: { yacht: Yacht }) {
   const [activeImg, setActiveImg] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
+
+  const next = useCallback(() => {
+    setActiveImg((prev) => (prev + 1) % yacht.gallery.length)
+  }, [yacht.gallery.length])
+
+  useEffect(() => {
+    if (isPaused || yacht.gallery.length <= 1) return
+    const timer = setInterval(next, 4000)
+    return () => clearInterval(timer)
+  }, [isPaused, next, yacht.gallery.length])
 
   return (
-    <section className="relative min-h-[90vh] bg-[#0b1818] text-white">
+    <section
+      className="relative min-h-[90vh] bg-[#0b1818] text-white"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       <SiteHeader />
 
-      {/* Full bleed background */}
+      {/* Full bleed background with crossfade slider */}
       <div className="absolute inset-0">
-        <Image
-          src={yacht.gallery[activeImg]}
-          alt={yacht.title}
-          fill
-          priority
-          className="object-cover transition-opacity duration-700"
-        />
+        <AnimatePresence mode="sync">
+          <motion.div
+            key={activeImg}
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={yacht.gallery[activeImg]}
+              alt={`${yacht.title} view ${activeImg + 1}`}
+              fill
+              priority
+              className="object-cover"
+            />
+          </motion.div>
+        </AnimatePresence>
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-[#0b1818]/90" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent" />
       </div>
+
+      {/* Slider progress dots */}
+      {yacht.gallery.length > 1 && (
+        <div className="absolute right-6 top-1/2 z-20 hidden -translate-y-1/2 flex-col gap-2 sm:flex">
+          {yacht.gallery.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setActiveImg(i)}
+              aria-label={`View ${i + 1}`}
+              className="group relative h-2 w-2 overflow-hidden rounded-full"
+            >
+              <span
+                className={`absolute inset-0 rounded-full transition-colors ${
+                  activeImg === i ? 'bg-[#d0bc99]' : 'bg-white/30 group-hover:bg-white/50'
+                }`}
+              />
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* Content */}
       <div className="relative z-10 flex min-h-[90vh] flex-col justify-end px-6 pb-16 pt-32 sm:px-10 lg:px-20">
@@ -77,18 +123,27 @@ export function YachtHero({ yacht }: { yacht: Yacht }) {
             </div>
           </div>
 
-          {/* Thumbnail strip */}
+          {/* Thumbnail strip with active progress */}
           {yacht.gallery.length > 1 && (
             <div className="mt-8 flex gap-3">
               {yacht.gallery.map((img, i) => (
                 <button
                   key={i}
                   onClick={() => setActiveImg(i)}
-                  className={`relative h-16 w-24 overflow-hidden rounded-md border-2 transition-all ${
-                    activeImg === i ? 'border-[#d0bc99]' : 'border-transparent opacity-60 hover:opacity-100'
+                  className={`relative h-16 w-24 overflow-hidden rounded-lg border-2 transition-all ${
+                    activeImg === i ? 'border-[#d0bc99]' : 'border-transparent opacity-50 hover:opacity-100'
                   }`}
                 >
                   <Image src={img} alt={`View ${i + 1}`} fill className="object-cover" />
+                  {activeImg === i && !isPaused && (
+                    <motion.div
+                      key={`progress-${activeImg}`}
+                      initial={{ width: '0%' }}
+                      animate={{ width: '100%' }}
+                      transition={{ duration: 4, ease: 'linear' }}
+                      className="absolute bottom-0 left-0 h-1 bg-[#d0bc99]"
+                    />
+                  )}
                 </button>
               ))}
             </div>
