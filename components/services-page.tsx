@@ -5,12 +5,18 @@ import { motion } from 'framer-motion'
 import { VideoHero } from './shared/video-hero'
 import { Eyebrow } from './shared/eyebrow'
 import { Reveal } from './shared/reveal'
+import { CharterBanner } from './home/charter-banner'
 
 const jetMain = '/assets/joanna-savage-private-plane.jpg'
-const jetSecondary = '/assets/private-jet-black.jpg'
 const yachtMain = '/assets/Yacht.jpeg'
 const propertyMain = '/assets/luxury-real-estate-1.jpg'
 const propertySecondary = '/assets/luxury-real-estate (1).jpg'
+
+const charterVideo = {
+  mp4: 'https://joannasavage.com/wp-content/themes/jo-savage/video/view-from-copter.mp4',
+  webm: 'https://joannasavage.com/wp-content/themes/jo-savage/video/view-from-copter.webm',
+  ogv: 'https://joannasavage.com/wp-content/themes/jo-savage/video/view-from-copter.ogv',
+}
 
 const spotlightProjects = [
   { title: 'BUGATTI x Binghatti', location: 'Dubai', image: '/assets/BUGATTI x Binghatti.jpg' },
@@ -207,10 +213,22 @@ export function ServicesPage() {
         </div>
       </section>
 
-      {/* Secondary aviation image — full-width banner */}
-      <section className="relative h-[400px] overflow-hidden">
-        <Image src={jetSecondary} alt="Private jet on tarmac" fill className="object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
+      {/* Secondary aviation video — full-width banner */}
+      <section className="relative flex min-h-[400px] items-center overflow-hidden text-white sm:min-h-[460px]">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover"
+        >
+          <source src={charterVideo.mp4} type="video/mp4" />
+          <source src={charterVideo.webm} type="video/webm" />
+          <source src={charterVideo.ogv} type="video/ogg" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#061111]/90 via-[#071919]/55 to-[#071919]/35" />
         <div className="relative z-10 flex h-full items-center px-6 sm:px-10 lg:px-20">
           <Reveal>
             <div className="max-w-lg text-white">
@@ -224,6 +242,8 @@ export function ServicesPage() {
           </Reveal>
         </div>
       </section>
+
+      {/* <CharterBanner /> */}
     </main>
   )
 }

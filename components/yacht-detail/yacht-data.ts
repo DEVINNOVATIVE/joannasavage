@@ -9,10 +9,10 @@ export type Yacht = {
   price: string
   badge: string
   hero: string
-  gallery: string[]
+  gallery: readonly string[]
   description: string
-  specs: YachtSpec[]
-  highlights: string[]
+  specs: readonly YachtSpec[]
+  highlights: readonly string[]
 }
 
 const yachts = {

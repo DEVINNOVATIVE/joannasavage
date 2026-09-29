@@ -4,7 +4,17 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { MapPin, Ruler, Zap, ArrowLeft, ArrowRight, Check } from 'lucide-react'
+import { 
+  MapPin, 
+  Ruler, 
+  Zap, 
+  ArrowLeft, 
+  ArrowRight, 
+  ChevronLeft, 
+  ChevronRight, 
+  Check, 
+  Info 
+} from 'lucide-react'
 import { SiteHeader } from '../shared/site-header'
 import { Eyebrow } from '../shared/eyebrow'
 import { Reveal } from '../shared/reveal'
@@ -13,142 +23,213 @@ import type { Yacht } from './yacht-data'
 export function YachtHero({ yacht }: { yacht: Yacht }) {
   const [activeImg, setActiveImg] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
+  const [showSpecsModal, setShowSpecsModal] = useState(false)
 
   const next = useCallback(() => {
     setActiveImg((prev) => (prev + 1) % yacht.gallery.length)
   }, [yacht.gallery.length])
 
+  const previous = useCallback(() => {
+    setActiveImg((prev) => (prev - 1 + yacht.gallery.length) % yacht.gallery.length)
+  }, [yacht.gallery.length])
+
   useEffect(() => {
     if (isPaused || yacht.gallery.length <= 1) return
-    const timer = setInterval(next, 4000)
+    const timer = setInterval(next, 5500)
     return () => clearInterval(timer)
   }, [isPaused, next, yacht.gallery.length])
 
+  const fullSpeed = yacht.specs.find(([label]) => 
+    label.toLowerCase().includes('speed')
+  )?.[1]
+
   return (
     <section
-      className="relative min-h-[90vh] bg-[#0b1818] text-white"
+      className="relative flex min-h-screen flex-col justify-between overflow-x-hidden bg-[#0a1211] text-white"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       <SiteHeader />
 
-      {/* Full bleed background with crossfade slider */}
-      <div className="absolute inset-0">
-        <AnimatePresence mode="sync">
-          <motion.div
-            key={activeImg}
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute inset-0"
-          >
-            <Image
-              src={yacht.gallery[activeImg]}
-              alt={`${yacht.title} view ${activeImg + 1}`}
-              fill
-              priority
-              className="object-cover"
-            />
-          </motion.div>
-        </AnimatePresence>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-[#0b1818]/90" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent" />
-      </div>
-
-      {/* Slider progress dots */}
-      {yacht.gallery.length > 1 && (
-        <div className="absolute right-6 top-1/2 z-20 hidden -translate-y-1/2 flex-col gap-2 sm:flex">
-          {yacht.gallery.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setActiveImg(i)}
-              aria-label={`View ${i + 1}`}
-              className="group relative h-2 w-2 overflow-hidden rounded-full"
+      <div className="relative z-10 flex flex-1 flex-col justify-between pt-24 pb-8">
+        {/* Top Header & Navigation bar */}
+        <div className="mx-auto w-full max-w-[1680px] px-4 sm:px-8 lg:px-12">
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
+            <Link
+              href="/yachts"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[10px] font-medium uppercase tracking-[0.2em] text-white/70 backdrop-blur-md transition-colors hover:border-white/30 hover:text-white"
             >
-              <span
-                className={`absolute inset-0 rounded-full transition-colors ${
-                  activeImg === i ? 'bg-[#d0bc99]' : 'bg-white/30 group-hover:bg-white/50'
-                }`}
-              />
-            </button>
-          ))}
-        </div>
-      )}
+              <ArrowLeft className="size-3" /> Back to inventory
+            </Link>
 
-      {/* Content */}
-      <div className="relative z-10 flex min-h-[90vh] flex-col justify-end px-6 pb-16 pt-32 sm:px-10 lg:px-20">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto w-full max-w-6xl"
-        >
-          {/* Back link */}
-          <Link
-            href="/yachts"
-            className="mb-8 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-white/60 transition-colors hover:text-white"
-          >
-            <ArrowLeft className="size-3" /> Back to inventory
-          </Link>
-
-          <div className="grid gap-10 lg:grid-cols-[1fr_340px] lg:items-end">
-            {/* Left: title + meta */}
-            <div>
-              <p className="mb-3 text-[10px] uppercase tracking-[0.3em] text-[#d0bc99]">{yacht.subtitle} · {yacht.year}</p>
-              <h1 className="text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">{yacht.title}</h1>
-              <div className="mt-5 flex flex-wrap gap-5 text-sm text-white/70">
-                <span className="flex items-center gap-2"><MapPin className="size-4 text-[#d0bc99]" /> {yacht.location}</span>
-                <span className="flex items-center gap-2"><Ruler className="size-4 text-[#d0bc99]" /> {yacht.length}</span>
-                <span className="flex items-center gap-2"><Zap className="size-4 text-[#d0bc99]" /> {yacht.specs.find(([l]) => l === 'Full Speed (knots)')?.[1]} knots top speed</span>
-              </div>
-            </div>
-
-            {/* Right: quick price + CTA */}
-            <div className="rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur-md">
-              <p className="text-[10px] uppercase tracking-[0.22em] text-[#d0bc99]">Asking price</p>
-              <p className="mt-1 text-3xl font-semibold">{yacht.price}</p>
-              <a
-                href="#enquire"
-                className="mt-5 flex items-center justify-center gap-2 rounded-full bg-[#d0bc99] px-6 py-3 text-xs font-medium uppercase tracking-[0.15em] text-[#0b1818] transition-colors hover:bg-white"
-              >
-                Enquire now <ArrowRight className="size-3" />
-              </a>
-              <Link
-                href="/contact"
-                className="mt-3 flex items-center justify-center gap-2 rounded-full border border-white/30 px-6 py-3 text-xs font-medium uppercase tracking-[0.15em] text-white/80 transition-colors hover:border-white hover:text-white"
-              >
-                Request a call back
-              </Link>
+            <div className="flex items-center gap-3">
+              <span className="text-[10px] font-medium uppercase tracking-[0.25em] text-[#d0bc99]">
+                {yacht.subtitle} · {yacht.year}
+              </span>
+              <span className="flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-white/50">
+                <span className="size-1.5 rounded-full bg-[#a9cf8f]" /> Available
+              </span>
             </div>
           </div>
+        </div>
 
-          {/* Thumbnail strip with active progress */}
-          {yacht.gallery.length > 1 && (
-            <div className="mt-8 flex gap-3">
-              {yacht.gallery.map((img, i) => (
-                <button
-                  key={i}
-                  onClick={() => setActiveImg(i)}
-                  className={`relative h-16 w-24 overflow-hidden rounded-lg border-2 transition-all ${
-                    activeImg === i ? 'border-[#d0bc99]' : 'border-transparent opacity-50 hover:opacity-100'
+        {/* 3-Panel Peek Carousel */}
+        <div className="relative my-auto flex w-full items-center justify-center overflow-visible py-4">
+          <div className="relative flex h-[52vh] min-h-[420px] max-h-[640px] w-full items-center justify-center">
+            {[-1, 0, 1].map((offset) => {
+              const index = (activeImg + offset + yacht.gallery.length) % yacht.gallery.length
+              const isActive = offset === 0
+
+              return (
+                <motion.div
+                  key={`${activeImg}-${offset}`}
+                  onClick={() => {
+                    if (offset === -1) previous()
+                    if (offset === 1) next()
+                  }}
+                  animate={{
+                    x: offset === 0 ? '0%' : offset < 0 ? '-76%' : '76%',
+                    scale: isActive ? 1 : 0.94,
+                    opacity: isActive ? 1 : 0.4,
+                    zIndex: isActive ? 20 : 10,
+                  }}
+                  transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                  className={`absolute top-0 h-full w-[88vw] max-w-[1020px] shrink-0 cursor-pointer overflow-hidden rounded-2xl shadow-2xl transition-[filter] duration-500 ${
+                    isActive ? 'cursor-default' : 'hover:opacity-60'
                   }`}
                 >
-                  <Image src={img} alt={`View ${i + 1}`} fill className="object-cover" />
-                  {activeImg === i && !isPaused && (
-                    <motion.div
-                      key={`progress-${activeImg}`}
-                      initial={{ width: '0%' }}
-                      animate={{ width: '100%' }}
-                      transition={{ duration: 4, ease: 'linear' }}
-                      className="absolute bottom-0 left-0 h-1 bg-[#d0bc99]"
-                    />
+                  {/* Clean Yacht Imagery (Unobstructed by dark overlay gradients) */}
+                  <Image
+                    src={yacht.gallery[index]}
+                    alt={`${yacht.title} slide ${index + 1}`}
+                    fill
+                    priority={isActive}
+                    className="object-cover object-center"
+                  />
+
+                  {/* Dim cover for side preview cards */}
+                  {!isActive && <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]" />}
+
+                  {/* Active Slide: Corner Circular Info Button */}
+                  {isActive && (
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setShowSpecsModal(!showSpecsModal)
+                      }}
+                      aria-label="View yacht specifications"
+                      className="absolute right-6 bottom-6 z-30 flex size-10 items-center justify-center rounded-full bg-white text-black shadow-xl transition-all duration-300 hover:scale-110 active:scale-95 sm:size-12"
+                    >
+                      <Info className="size-5 sm:size-6" />
+                    </button>
                   )}
-                </button>
-              ))}
+
+                  {/* Corner Specs Overlay drawer toggled by the info button */}
+                  <AnimatePresence>
+                    {isActive && showSpecsModal && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 15 }}
+                        className="absolute right-6 bottom-20 z-30 max-w-xs rounded-xl border border-white/15 bg-[#0a1514]/90 p-4 text-xs shadow-2xl backdrop-blur-xl"
+                      >
+                        <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#d0bc99]">
+                          Vessel Specs
+                        </p>
+                        <h4 className="mt-1 font-semibold text-white">{yacht.title}</h4>
+                        <div className="mt-3 divide-y divide-white/10 text-white/80">
+                          {yacht.specs.slice(0, 4).map(([lbl, val]) => (
+                            <div key={lbl} className="flex justify-between py-1.5 text-[11px]">
+                              <span className="text-white/50">{lbl}</span>
+                              <span className="font-medium text-white">{val}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              )
+            })}
+          </div>
+
+          {/* Carousel Arrow Controls */}
+          {yacht.gallery.length > 1 && (
+            <div className="pointer-events-none absolute inset-x-4 z-30 mx-auto flex max-w-[1200px] justify-between sm:inset-x-8">
+              <button
+                type="button"
+                onClick={previous}
+                aria-label="Previous view"
+                className="pointer-events-auto flex size-12 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white backdrop-blur-md transition-all hover:scale-105 hover:bg-black/70"
+              >
+                <ChevronLeft className="size-5" />
+              </button>
+              <button
+                type="button"
+                onClick={next}
+                aria-label="Next view"
+                className="pointer-events-auto flex size-12 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white backdrop-blur-md transition-all hover:scale-105 hover:bg-black/70"
+              >
+                <ChevronRight className="size-5" />
+              </button>
             </div>
           )}
-        </motion.div>
+        </div>
+
+        {/* Floating Spec Bar Dock & Navigation Thumbnails */}
+        <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-8">
+          <div className="rounded-2xl border border-white/10 bg-[#0d1d1a]/80 p-3.5 shadow-2xl backdrop-blur-xl sm:p-4">
+            <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+              {/* Spec Chips */}
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="flex items-center gap-2 rounded-xl bg-white/[0.06] px-3 py-2 text-xs text-white/80">
+                  <MapPin className="size-3.5 text-[#d0bc99]" /> {yacht.location}
+                </span>
+                <span className="flex items-center gap-2 rounded-xl bg-white/[0.06] px-3 py-2 text-xs text-white/80">
+                  <Ruler className="size-3.5 text-[#d0bc99]" /> {yacht.length}
+                </span>
+                {fullSpeed && (
+                  <span className="flex items-center gap-2 rounded-xl bg-white/[0.06] px-3 py-2 text-xs text-white/80">
+                    <Zap className="size-3.5 text-[#d0bc99]" /> {fullSpeed}
+                  </span>
+                )}
+                <span className="rounded-xl border border-[#d0bc99]/40 bg-[#d0bc99]/10 px-3.5 py-2 text-xs font-semibold text-[#d0bc99]">
+                  {yacht.price}
+                </span>
+              </div>
+
+              {/* Gallery Thumbnails & Enquire CTA */}
+              <div className="flex items-center justify-between gap-3 sm:justify-end">
+                {yacht.gallery.length > 1 && (
+                  <div className="hidden sm:flex items-center gap-1.5">
+                    {yacht.gallery.map((img, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setActiveImg(i)}
+                        aria-label={`View thumbnail ${i + 1}`}
+                        className={`relative h-10 w-14 overflow-hidden rounded-lg border transition-all ${
+                          activeImg === i
+                            ? 'border-[#d0bc99] scale-105 opacity-100 shadow-md ring-1 ring-[#d0bc99]'
+                            : 'border-transparent opacity-40 hover:opacity-80'
+                        }`}
+                      >
+                        <Image src={img} alt={`View thumbnail ${i + 1}`} fill className="object-cover" />
+                      </button>
+                    ))}
+                  </div>
+                )}
+
+                <a
+                  href="#enquire"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#d0bc99] px-6 py-2.5 text-xs font-semibold uppercase tracking-[0.16em] text-[#071614] transition-all hover:scale-105 hover:bg-white"
+                >
+                  Enquire now <ArrowRight className="size-3.5" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )
@@ -156,44 +237,54 @@ export function YachtHero({ yacht }: { yacht: Yacht }) {
 
 export function YachtSpecs({ yacht }: { yacht: Yacht }) {
   return (
-    <section className="bg-[#f8f7f4] px-6 py-20 sm:px-10 lg:px-20">
+    <section className="bg-[#fbfaf8] px-6 py-24 sm:px-10 lg:px-20 text-[#192327]">
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-16 lg:grid-cols-[1.2fr_0.8fr]">
-
-          {/* Left: description + highlights */}
+          {/* Left: Overview description & Key Highlights */}
           <div>
             <Reveal>
               <Eyebrow>Overview</Eyebrow>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight">{yacht.title}</h2>
-              <p className="mt-6 text-sm leading-8 text-[#526064]">{yacht.description}</p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
+                {yacht.title}
+              </h2>
+              <p className="mt-6 text-base leading-relaxed text-[#5a686c]">
+                {yacht.description}
+              </p>
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="mt-10">
-                <Eyebrow>Key highlights</Eyebrow>
-                <ul className="mt-5 space-y-3">
+              <div className="mt-12">
+                <Eyebrow>Key Highlights</Eyebrow>
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
                   {yacht.highlights.map((h) => (
-                    <li key={h} className="flex items-start gap-3 text-sm text-[#192327]">
-                      <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-[#0b1818]">
+                    <div
+                      key={h}
+                      className="flex items-center gap-3 rounded-xl border border-neutral-200/80 bg-white p-3.5 shadow-[0_2px_8px_rgba(0,0,0,0.03)]"
+                    >
+                      <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-[#0b1818]">
                         <Check className="size-3 text-[#d0bc99]" />
                       </span>
-                      {h}
-                    </li>
+                      <span className="text-xs font-medium text-[#2d3a3d]">{h}</span>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             </Reveal>
           </div>
 
-          {/* Right: specs table */}
+          {/* Right: Specifications Table Card */}
           <Reveal delay={0.15}>
-            <div className="rounded-2xl bg-white p-6 shadow-md sm:p-8">
+            <div className="rounded-3xl border border-neutral-200/70 bg-white p-7 shadow-xl shadow-neutral-100/70">
               <Eyebrow>Specifications</Eyebrow>
-              <div className="mt-5 divide-y divide-[#f0ede8]">
+              <div className="mt-6 divide-y divide-neutral-100">
                 {yacht.specs.map(([label, value]) => (
-                  <div key={label} className="flex justify-between gap-4 py-3">
-                    <span className="text-xs text-[#a8865c] uppercase tracking-[0.1em] whitespace-nowrap">{label}</span>
-                    <span className="text-right text-xs font-medium text-[#192327]">{value}</span>
+                  <div key={label} className="flex justify-between items-center gap-4 py-3.5">
+                    <span className="text-xs font-medium uppercase tracking-[0.14em] text-[#937b58]">
+                      {label}
+                    </span>
+                    <span className="text-right text-sm font-semibold text-neutral-800">
+                      {value}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -205,106 +296,35 @@ export function YachtSpecs({ yacht }: { yacht: Yacht }) {
   )
 }
 
+
 export function YachtEnquiry({ yacht }: { yacht: Yacht }) {
-  const [submitted, setSubmitted] = useState(false)
-  const [loading, setLoading] = useState(false)
-
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    setLoading(true)
-    const fd = new FormData(e.currentTarget)
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          firstName: String(fd.get('firstName') || ''),
-          lastName: String(fd.get('lastName') || ''),
-          email: String(fd.get('email') || ''),
-          telephone: String(fd.get('telephone') || ''),
-          message: String(fd.get('message') || `I am interested in the ${yacht.title}. Please send me more information.`),
-          serviceType: `Yacht Enquiry — ${yacht.title}`,
-        }),
-      })
-      if (res.ok) setSubmitted(true)
-    } finally {
-      setLoading(false)
-    }
-  }
-
   return (
-    <section id="enquire" className="bg-[#0b1818] px-6 py-20 text-white sm:px-10 lg:px-20">
-      <div className="mx-auto max-w-6xl">
-        <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
-          <Reveal>
-            <Eyebrow>Enquire</Eyebrow>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight">Interested in this vessel?</h2>
-            <p className="mt-5 text-sm leading-7 text-white/60">
-              Fill in your details and Joanna will be in touch to arrange a private viewing or answer any
-              questions about the {yacht.title}.
-            </p>
-            <div className="mt-8 space-y-4 text-sm">
-              <div>
-                <p className="text-[10px] uppercase tracking-[0.2em] text-[#d0bc99]">Phone</p>
-                <a href="tel:+971562330110" className="mt-1 block text-white/70 hover:text-white">+971 56 233 0110</a>
-              </div>
-              <div>
-                <p className="text-[10px] uppercase tracking-[0.2em] text-[#d0bc99]">Email</p>
-                <a href="mailto:info@joannasavage.com" className="mt-1 block text-white/70 hover:text-white">info@joannasavage.com</a>
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.15}>
-            {submitted ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-10 text-center"
-              >
-                <div className="flex size-14 items-center justify-center rounded-full bg-[#d0bc99]">
-                  <Check className="size-7 text-[#0b1818]" />
-                </div>
-                <h3 className="mt-5 text-xl font-semibold">Enquiry sent!</h3>
-                <p className="mt-3 text-sm text-white/60">We will be in touch shortly to discuss the {yacht.title}.</p>
-              </motion.div>
-            ) : (
-              <form onSubmit={handleSubmit} className="grid gap-4 sm:grid-cols-2">
-                {[
-                  { name: 'firstName', label: 'First Name', required: true },
-                  { name: 'lastName', label: 'Last Name', required: true },
-                  { name: 'email', label: 'Email', type: 'email', required: true },
-                  { name: 'telephone', label: 'Telephone' },
-                ].map((f) => (
-                  <input
-                    key={f.name}
-                    name={f.name}
-                    type={f.type || 'text'}
-                    required={f.required}
-                    placeholder={f.label + (f.required ? ' *' : '')}
-                    className="h-12 rounded-xl border border-white/15 bg-white/10 px-4 text-sm text-white placeholder-white/40 outline-none transition-all focus:border-[#d0bc99] focus:bg-white/15"
-                  />
-                ))}
-                <textarea
-                  name="message"
-                  rows={3}
-                  placeholder={`I am interested in the ${yacht.title}...`}
-                  className="resize-none rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-sm text-white placeholder-white/40 outline-none transition-all focus:border-[#d0bc99] focus:bg-white/15 sm:col-span-2"
-                />
-                <div className="sm:col-span-2">
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="inline-flex items-center gap-2 rounded-full bg-[#d0bc99] px-8 py-3.5 text-xs font-medium uppercase tracking-[0.15em] text-[#0b1818] transition-colors hover:bg-white disabled:opacity-60"
-                  >
-                    {loading ? 'Sending...' : 'Send enquiry'}
-                    {!loading && <ArrowRight className="size-3" />}
-                  </button>
-                </div>
-              </form>
-            )}
-          </Reveal>
-        </div>
+    <section id="enquire" className="bg-[#091715] px-6 py-20 text-white sm:px-10 lg:px-20">
+      <div className="mx-auto max-w-4xl text-center">
+        <Reveal>
+          <Eyebrow>Private Acquisition</Eyebrow>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+            Interested in {yacht.title}?
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/65">
+            Connect directly with our team to arrange a confidential private inspection, 
+            request the complete GA specification brochure, or discuss delivery logistics.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <Link
+              href={`/contact?subject=${encodeURIComponent(`Enquiry for ${yacht.title}`)}`}
+              className="inline-flex items-center gap-2 rounded-full bg-[#d0bc99] px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.16em] text-[#091715] shadow-lg transition-all duration-300 hover:scale-105 hover:bg-white"
+            >
+              Contact Us <ArrowRight className="size-3.5" />
+            </Link>
+            <a
+              href="tel:+971562330110"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3.5 text-xs font-medium uppercase tracking-[0.16em] text-white backdrop-blur-sm transition-colors hover:border-[#d0bc99] hover:text-[#d0bc99]"
+            >
+              Call +971 56 233 0110
+            </a>
+          </div>
+        </Reveal>
       </div>
     </section>
   )
