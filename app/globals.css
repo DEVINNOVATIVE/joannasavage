@@ -165,3 +165,76 @@
     font-family: Arial, Helvetica, sans-serif;
   }
 }
+
+/* Scroll-driven animations */
+@supports (animation-timeline: view()) {
+  .scroll-fade-in {
+    animation: scrollFadeIn linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 50%;
+  }
+  .scroll-scale-in {
+    animation: scrollScaleIn linear both;
+    animation-timeline: view();
+    animation-range: entry 5% exit 40%;
+  }
+  .scroll-clip-reveal {
+    animation: scrollClipReveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 45%;
+  }
+  .scroll-parallax-up {
+    animation: scrollParallaxUp linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+  .scroll-parallax-down {
+    animation: scrollParallaxDown linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+  .scroll-blur-in {
+    animation: scrollBlurIn linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
+}
+
+@keyframes scrollFadeIn {
+  from { opacity: 0; transform: translateY(60px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes scrollScaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes scrollClipReveal {
+  from { clip-path: inset(100% 0 0 0); opacity: 0; }
+  to   { clip-path: inset(0 0 0 0); opacity: 1; }
+}
+@keyframes scrollParallaxUp {
+  from { transform: translateY(80px); }
+  to   { transform: translateY(-80px); }
+}
+@keyframes scrollParallaxDown {
+  from { transform: translateY(-40px); }
+  to   { transform: translateY(40px); }
+}
+@keyframes scrollBlurIn {
+  from { opacity: 0; filter: blur(12px); transform: translateY(30px); }
+  to   { opacity: 1; filter: blur(0); transform: translateY(0); }
+}
+
+/* Fallback for browsers without scroll-timeline */
+@supports not (animation-timeline: view()) {
+  .scroll-fade-in,
+  .scroll-scale-in,
+  .scroll-clip-reveal,
+  .scroll-blur-in {
+    opacity: 1;
+  }
+  .scroll-parallax-up,
+  .scroll-parallax-down {
+    transform: none;
+  }
+}

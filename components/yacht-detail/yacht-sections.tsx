@@ -2,36 +2,70 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { MapPin, Ruler, Zap, ArrowLeft, ArrowRight, Check } from 'lucide-react'
+import { useState, useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { MapPin, Ruler, Zap, ArrowLeft, ArrowRight, Check, Anchor, Gauge, Fuel } from 'lucide-react'
 import { SiteHeader } from '../shared/site-header'
 import { Eyebrow } from '../shared/eyebrow'
-import { Reveal } from '../shared/reveal'
+import { Reveal, RevealClip, RevealScale } from '../shared/reveal'
 import type { Yacht } from './yacht-data'
+
+const heroVideo = {
+  mp4: 'https://joannasavage.com/wp-content/themes/jo-savage/video/VELA%20by%20OMNIYAT.mp4',
+  webm: 'https://joannasavage.com/wp-content/themes/jo-savage/video/VELA%20by%20OMNIYAT.webm',
+  ogv: 'https://joannasavage.com/wp-content/themes/jo-savage/video/VELA%20by%20OMNIYAT.ogv',
+}
 
 export function YachtHero({ yacht }: { yacht: Yacht }) {
   const [activeImg, setActiveImg] = useState(0)
+  const ref = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start start', 'end start'],
+  })
+  const overlayOpacity = useTransform(scrollYProgress, [0, 1], [0.5, 0.9])
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, -80])
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.15])
 
   return (
-    <section className="relative min-h-[90vh] bg-[#0b1818] text-white">
+    <section ref={ref} className="relative min-h-[100vh] overflow-hidden bg-[#0b1818] text-white">
       <SiteHeader />
 
-      {/* Full bleed background */}
-      <div className="absolute inset-0">
+      {/* Video background with scroll scale */}
+      <motion.div style={{ scale }} className="absolute inset-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover"
+        >
+          <source src={heroVideo.mp4} type="video/mp4" />
+          <source src={heroVideo.webm} type="video/webm" />
+          <source src={heroVideo.ogv} type="video/ogg" />
+        </video>
+        {/* Fallback image while video loads */}
         <Image
           src={yacht.gallery[activeImg]}
           alt={yacht.title}
           fill
           priority
-          className="object-cover transition-opacity duration-700"
+          className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-[#0b1818]/90" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent" />
-      </div>
+      </motion.div>
 
-      {/* Content */}
-      <div className="relative z-10 flex min-h-[90vh] flex-col justify-end px-6 pb-16 pt-32 sm:px-10 lg:px-20">
+      {/* Dynamic overlay that darkens on scroll */}
+      <motion.div style={{ opacity: overlayOpacity }} className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-[#0b1818]" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
+
+      {/* Content with scroll-driven parallax */}
+      <motion.div
+        style={{ y: contentY, opacity: contentOpacity }}
+        className="relative z-10 flex min-h-[100vh] flex-col justify-end px-6 pb-16 pt-32 sm:px-10 lg:px-20"
+      >
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -49,17 +83,41 @@ export function YachtHero({ yacht }: { yacht: Yacht }) {
           <div className="grid gap-10 lg:grid-cols-[1fr_340px] lg:items-end">
             {/* Left: title + meta */}
             <div>
-              <p className="mb-3 text-[10px] uppercase tracking-[0.3em] text-[#d0bc99]">{yacht.subtitle} · {yacht.year}</p>
-              <h1 className="text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">{yacht.title}</h1>
-              <div className="mt-5 flex flex-wrap gap-5 text-sm text-white/70">
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.15 }}
+                className="mb-3 text-[10px] uppercase tracking-[0.3em] text-[#d0bc99]"
+              >
+                {yacht.subtitle} · {yacht.year}
+              </motion.p>
+              <motion.h1
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                className="text-4xl font-semibold leading-tight tracking-tight sm:text-6xl"
+              >
+                {yacht.title}
+              </motion.h1>
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="mt-5 flex flex-wrap gap-5 text-sm text-white/70"
+              >
                 <span className="flex items-center gap-2"><MapPin className="size-4 text-[#d0bc99]" /> {yacht.location}</span>
                 <span className="flex items-center gap-2"><Ruler className="size-4 text-[#d0bc99]" /> {yacht.length}</span>
                 <span className="flex items-center gap-2"><Zap className="size-4 text-[#d0bc99]" /> {yacht.specs.find(([l]) => l === 'Full Speed (knots)')?.[1]} knots top speed</span>
-              </div>
+              </motion.div>
             </div>
 
             {/* Right: quick price + CTA */}
-            <div className="rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur-md">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur-md"
+            >
               <p className="text-[10px] uppercase tracking-[0.22em] text-[#d0bc99]">Asking price</p>
               <p className="mt-1 text-3xl font-semibold">{yacht.price}</p>
               <a
@@ -74,12 +132,17 @@ export function YachtHero({ yacht }: { yacht: Yacht }) {
               >
                 Request a call back
               </Link>
-            </div>
+            </motion.div>
           </div>
 
           {/* Thumbnail strip */}
           {yacht.gallery.length > 1 && (
-            <div className="mt-8 flex gap-3">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="mt-8 flex gap-3"
+            >
               {yacht.gallery.map((img, i) => (
                 <button
                   key={i}
@@ -91,20 +154,43 @@ export function YachtHero({ yacht }: { yacht: Yacht }) {
                   <Image src={img} alt={`View ${i + 1}`} fill className="object-cover" />
                 </button>
               ))}
-            </div>
+            </motion.div>
           )}
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   )
 }
 
 export function YachtSpecs({ yacht }: { yacht: Yacht }) {
+  const topSpeed = yacht.specs.find(([l]) => l === 'Full Speed (knots)')?.[1]
+  const cruiseSpeed = yacht.specs.find(([l]) => l === 'Cruise Speed (knots)')?.[1]
+  const fuel = yacht.specs.find(([l]) => l.startsWith('Fuel Capacity'))?.[1]
+
   return (
     <section className="bg-[#f8f7f4] px-6 py-20 sm:px-10 lg:px-20">
       <div className="mx-auto max-w-6xl">
-        <div className="grid gap-16 lg:grid-cols-[1.2fr_0.8fr]">
+        {/* Quick stat cards with scale-in */}
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          {[
+            { icon: Ruler, label: 'Length', value: yacht.length },
+            { icon: Zap, label: 'Top Speed', value: `${topSpeed} kn` },
+            { icon: Gauge, label: 'Cruise', value: `${cruiseSpeed} kn` },
+            { icon: Fuel, label: 'Fuel', value: fuel ? `${fuel} L` : 'POA' },
+          ].map((stat, i) => (
+            <RevealScale key={stat.label} delay={i * 0.08}>
+              <div className="rounded-2xl border border-[#e3e2de] bg-white p-5 text-center transition-all hover:border-[#d0bc99] hover:shadow-lg">
+                <div className="mx-auto flex size-10 items-center justify-center rounded-full bg-[#0b1818]">
+                  <stat.icon className="size-5 text-[#d0bc99]" />
+                </div>
+                <p className="mt-3 text-lg font-semibold text-[#192327]">{stat.value}</p>
+                <p className="mt-1 text-[10px] uppercase tracking-[0.15em] text-[#a8865c]">{stat.label}</p>
+              </div>
+            </RevealScale>
+          ))}
+        </div>
 
+        <div className="mt-16 grid gap-16 lg:grid-cols-[1.2fr_0.8fr]">
           {/* Left: description + highlights */}
           <div>
             <Reveal>
@@ -113,25 +199,32 @@ export function YachtSpecs({ yacht }: { yacht: Yacht }) {
               <p className="mt-6 text-sm leading-8 text-[#526064]">{yacht.description}</p>
             </Reveal>
 
-            <Reveal delay={0.1}>
+            <RevealClip delay={0.1}>
               <div className="mt-10">
                 <Eyebrow>Key highlights</Eyebrow>
                 <ul className="mt-5 space-y-3">
-                  {yacht.highlights.map((h) => (
-                    <li key={h} className="flex items-start gap-3 text-sm text-[#192327]">
+                  {yacht.highlights.map((h, i) => (
+                    <motion.li
+                      key={h}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, margin: '-60px' }}
+                      transition={{ duration: 0.5, delay: i * 0.1 }}
+                      className="flex items-start gap-3 text-sm text-[#192327]"
+                    >
                       <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-[#0b1818]">
                         <Check className="size-3 text-[#d0bc99]" />
                       </span>
                       {h}
-                    </li>
+                    </motion.li>
                   ))}
                 </ul>
               </div>
-            </Reveal>
+            </RevealClip>
           </div>
 
-          {/* Right: specs table */}
-          <Reveal delay={0.15}>
+          {/* Right: specs table with clip-path reveal */}
+          <RevealClip delay={0.15}>
             <div className="rounded-2xl bg-white p-6 shadow-md sm:p-8">
               <Eyebrow>Specifications</Eyebrow>
               <div className="mt-5 divide-y divide-[#f0ede8]">
@@ -143,7 +236,7 @@ export function YachtSpecs({ yacht }: { yacht: Yacht }) {
                 ))}
               </div>
             </div>
-          </Reveal>
+          </RevealClip>
         </div>
       </div>
     </section>
@@ -200,7 +293,7 @@ export function YachtEnquiry({ yacht }: { yacht: Yacht }) {
             </div>
           </Reveal>
 
-          <Reveal delay={0.15}>
+          <RevealClip delay={0.15}>
             {submitted ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -248,7 +341,7 @@ export function YachtEnquiry({ yacht }: { yacht: Yacht }) {
                 </div>
               </form>
             )}
-          </Reveal>
+          </RevealClip>
         </div>
       </div>
     </section>

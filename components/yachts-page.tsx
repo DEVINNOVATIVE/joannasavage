@@ -2,12 +2,12 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { MapPin, Ruler, ArrowRight } from 'lucide-react'
+import { useState, useRef } from 'react'
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
+import { MapPin, Ruler, ArrowRight, Anchor } from 'lucide-react'
 import { VideoHero } from './shared/video-hero'
 import { Eyebrow } from './shared/eyebrow'
-import { Reveal } from './shared/reveal'
+import { Reveal, RevealClip, RevealScale, ParallaxLayer } from './shared/reveal'
 import { allYachts } from './yacht-detail/yacht-data'
 
 const filters = ['All', 'Sport Yacht', 'Motor Yacht', 'Super Yacht']
@@ -28,7 +28,7 @@ export function YachtsPage() {
         scrollTarget="#inventory"
       />
 
-      {/* Stats strip */}
+      {/* Stats strip with parallax scroll */}
       <div className="bg-[#0b1818] px-6 py-8 text-white sm:px-10 lg:px-20">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-6">
           {[
@@ -36,16 +36,23 @@ export function YachtsPage() {
             { value: '2023', label: 'Model year' },
             { value: 'Sunseeker', label: 'Exclusive brand partner' },
             { value: 'POA', label: 'Price on application' },
-          ].map((item) => (
-            <div key={item.label} className="text-center">
+          ].map((item, i) => (
+            <motion.div
+              key={item.label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="text-center"
+            >
               <p className="font-serif text-2xl italic text-[#d0bc99]">{item.value}</p>
               <p className="mt-1 text-[10px] uppercase tracking-[0.2em] text-white/50">{item.label}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
 
-      {/* Inventory */}
+      {/* Inventory with clip-path reveal cards */}
       <section id="inventory" className="px-6 py-20 sm:px-10 lg:px-20">
         <div className="mx-auto max-w-6xl">
           <Reveal>
@@ -79,21 +86,23 @@ export function YachtsPage() {
                 <motion.article
                   key={yacht.slug}
                   layout
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.45, delay: i * 0.08 }}
+                  initial={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
+                  animate={{ opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
+                  exit={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
+                  transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
                   className="group relative overflow-hidden rounded-2xl bg-white shadow-md transition-shadow hover:shadow-xl"
                 >
-                  {/* Image */}
+                  {/* Image with parallax zoom on hover */}
                   <div className="relative aspect-[1.7] overflow-hidden">
-                    <Image
-                      src={yacht.hero}
-                      alt={yacht.title}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent" />
+                    <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
+                      <Image
+                        src={yacht.hero}
+                        alt={yacht.title}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
 
                     {/* Badges */}
                     <div className="absolute left-4 top-4 flex gap-2">
@@ -159,35 +168,76 @@ export function YachtsPage() {
         </div>
       </section>
 
-      {/* Charter banner */}
-      <section className="relative overflow-hidden">
-        <div className="relative aspect-[3.5] w-full overflow-hidden sm:aspect-[4.5]">
-          <Image
-            src="/assets/luxury-yacht-.jpg"
-            alt="Luxury yacht on the water"
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1818]/80 via-[#0b1818]/40 to-transparent" />
-        </div>
-        <div className="absolute inset-0 flex items-center px-6 sm:px-10 lg:px-20">
+      {/* Charter banner with parallax scroll effect */}
+      <ParallaxBannerSection />
+
+      {/* Why choose us section with staggered reveals */}
+      <section className="bg-white px-6 py-20 sm:px-10 lg:px-20">
+        <div className="mx-auto max-w-6xl">
           <Reveal>
-            <div className="max-w-xl text-white">
-              <Eyebrow>Working exclusively with Sunseeker Global</Eyebrow>
-              <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">Bespoke Luxury Charters</h2>
-              <p className="mt-3 text-sm leading-7 text-white/70">
-                Beyond sales, Joanna arranges private charter experiences tailored to your world.
-              </p>
-              <Link
-                href="/contact"
-                className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#d0bc99] px-6 py-3 text-xs font-medium uppercase tracking-[0.12em] text-[#0b1818] transition-colors hover:bg-white"
-              >
-                Enquire now <ArrowRight className="size-3" />
-              </Link>
+            <div className="text-center">
+              <Eyebrow>Why Joanna Savage</Eyebrow>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight">A new standard in yachting</h2>
             </div>
           </Reveal>
+          <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { icon: Anchor, title: 'Curated Inventory', desc: 'Every vessel is hand-selected for quality, performance, and pedigree.' },
+              { icon: MapPin, title: 'Global Reach', desc: 'From Dubai to London, Joanna connects you to the world\'s finest yachts.' },
+              { icon: Ruler, title: 'Full Lifecycle', desc: 'From new builds to charter and resale, every stage is expertly managed.' },
+            ].map((item, i) => (
+              <RevealScale key={item.title} delay={i * 0.12}>
+                <div className="rounded-2xl border border-[#e3e2de] bg-[#f7f6f3] p-8 text-center transition-all hover:border-[#d0bc99] hover:shadow-lg">
+                  <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-[#0b1818]">
+                    <item.icon className="size-6 text-[#d0bc99]" />
+                  </div>
+                  <h3 className="mt-5 text-lg font-semibold">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-[#526064]">{item.desc}</p>
+                </div>
+              </RevealScale>
+            ))}
+          </div>
         </div>
       </section>
     </main>
+  )
+}
+
+function ParallaxBannerSection() {
+  const ref = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  })
+  const y = useTransform(scrollYProgress, [0, 1], ['-10%', '10%'])
+  const textY = useTransform(scrollYProgress, [0, 1], ['40px', '-40px'])
+
+  return (
+    <section ref={ref} className="relative h-[420px] overflow-hidden sm:h-[500px]">
+      <motion.div style={{ y }} className="absolute inset-0 scale-110">
+        <Image
+          src="/assets/luxury-yacht-.jpg"
+          alt="Luxury yacht on the water"
+          fill
+          className="object-cover"
+        />
+      </motion.div>
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0b1818]/85 via-[#0b1818]/50 to-transparent" />
+      <div className="relative z-10 flex h-full items-center px-6 sm:px-10 lg:px-20">
+        <motion.div style={{ y: textY }} className="max-w-xl text-white">
+          <Eyebrow>Working exclusively with Sunseeker Global</Eyebrow>
+          <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">Bespoke Luxury Charters</h2>
+          <p className="mt-3 text-sm leading-7 text-white/70">
+            Beyond sales, Joanna arranges private charter experiences tailored to your world.
+          </p>
+          <Link
+            href="/contact"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#d0bc99] px-6 py-3 text-xs font-medium uppercase tracking-[0.12em] text-[#0b1818] transition-colors hover:bg-white"
+          >
+            Enquire now <ArrowRight className="size-3" />
+          </Link>
+        </motion.div>
+      </div>
+    </section>
   )
 }
