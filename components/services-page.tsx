@@ -60,9 +60,9 @@ export function ServicesPage() {
       <section className="px-6 py-24 sm:px-10 lg:px-20 lg:py-32">
         <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal>
-            <div className="relative h-[460px] overflow-hidden rounded-2xl">
+            <div className="relative h-115 overflow-hidden rounded-2xl">
               <Image src={jetMain} alt="Private jet exterior" fill className="object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent" />
             </div>
           </Reveal>
           <Reveal delay={0.15}>
@@ -72,19 +72,22 @@ export function ServicesPage() {
                 Private Jets: Sales, Acquisition &amp; Charter
               </h2>
               <p className="mt-6 text-sm leading-7 text-[#526064]">
-                When it comes to flying on your private jet, bespoke expertise goes hand in hand with
-                exceptional service. From sourcing and acquisition to charter, we make every journey
-                effortless, discreet and deeply personal.
+                When it comes to selling your private jet, Joanna leverages her expertise and worldwide
+                connections to ensure maximum exposure and the best possible outcome. She employs targeted
+                marketing strategies and a comprehensive approach to attract qualified buyers and facilitate
+                a seamless transaction.
               </p>
               <p className="mt-4 text-sm leading-7 text-[#526064]">
-                Joanna&apos;s dedication to excellence extends across every detail, from selecting the
-                right aircraft to negotiating the right terms.
+                Joanna&apos;s dedication to exceptional service extends beyond the buying and selling process.
+                She offers ongoing support and guidance, helping clients with aircraft management, charter
+                services, and maintenance. Her commitment to delivering unparalleled customer satisfaction
+                sets her apart in the industry.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 {['Aircraft Sourcing', 'Acquisition', 'Charter Management', 'Discreet Travel'].map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full border border-[#d0bc99] bg-[#f7f6f3] px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.1em] text-[#a8865c]"
+                    className="rounded-full border border-[#d0bc99] bg-[#f7f6f3] px-4 py-1.5 text-[11px] font-medium uppercase tracking-widest text-[#a8865c]"
                   >
                     {tag}
                   </span>
@@ -105,15 +108,25 @@ export function ServicesPage() {
                 Trusted Super Yacht Sales &amp; Charter Expert
               </h2>
               <p className="mt-6 text-sm leading-7 text-[#526064]">
-                From new builds to pre-owned yachts, Joanna&apos;s expertise spans the entire lifecycle.
-                Her global network and knowledge ensure every client receives a tailored, discreet and
-                rewarding experience.
+                When it comes to super yacht sales, Joanna&apos;s expertise shines through. With her extensive
+                network and industry knowledge, she offers a curated selection of the finest super yachts on
+                the market. Whether you&apos;re looking for a sleek and contemporary vessel or a classic and
+                timeless beauty, Joanna has the expertise to guide you towards the perfect match. She ensures
+                that each transaction is smooth, transparent, and tailored to your specific needs and
+                preferences.
+              </p>
+              <p className="mt-4 text-sm leading-7 text-[#526064]">
+                For those seeking the ultimate luxury getaway, Joanna&apos;s super yacht charter services are
+                second to none. With access to a wide range of luxurious and meticulously maintained yachts,
+                she can help you plan the perfect charter experience. Whether you desire a thrilling adventure
+                in exotic destinations or a serene escape to secluded islands, Joanna&apos;s attention to detail
+                and commitment to excellence ensure that every moment of your charter is unforgettable.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 {['New Builds', 'Pre-Owned', 'Charter', 'Lifecycle Management'].map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full border border-[#d0bc99] bg-[#f7f6f3] px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.1em] text-[#a8865c]"
+                    className="rounded-full border border-[#d0bc99] bg-[#f7f6f3] px-4 py-1.5 text-[11px] font-medium uppercase tracking-widest text-[#a8865c]"
                   >
                     {tag}
                   </span>
@@ -122,9 +135,9 @@ export function ServicesPage() {
             </div>
           </Reveal>
           <Reveal delay={0.15}>
-            <div className="relative h-[460px] overflow-hidden rounded-2xl">
+            <div className="relative h-115 overflow-hidden rounded-2xl">
               <Image src={yachtMain} alt="Luxury super yacht at sea" fill className="object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent" />
             </div>
           </Reveal>
         </div>
@@ -134,7 +147,7 @@ export function ServicesPage() {
       <section className="px-6 py-24 sm:px-10 lg:px-20 lg:py-32">
         <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal>
-            <div className="relative h-[460px] overflow-hidden rounded-2xl">
+            <div className="relative h-115 overflow-hidden rounded-2xl">
               <Image src={propertyMain} alt="Luxury waterfront residence" fill className="object-cover" />
               <Image
                 src={propertySecondary}
@@ -152,15 +165,24 @@ export function ServicesPage() {
                 Luxury Sales &amp; Off-Plan Investments
               </h2>
               <p className="mt-6 text-sm leading-7 text-[#526064]">
-                Discover investment opportunities in exceptional locations, from waterfront residences to
-                landmark developments. Joanna provides a considered path through every stage of
-                acquisition.
+                When it comes to luxury sales, Joanna&apos;s expertise is unmatched. She offers a remarkable
+                portfolio of prestigious properties, including stunning villas, opulent mansions, and
+                exclusive luxury estates. Whether you&apos;re searching for a luxurious residence in a prime
+                location or an investment property with high potential, Joanna&apos;s extensive network and
+                market insights ensure that you find the perfect match.
+              </p>
+              <p className="mt-4 text-sm leading-7 text-[#526064]">
+                In addition to luxury sales, Joanna specializes in off-plan investments. She provides exclusive
+                access to a wide range of off-plan developments, allowing investors to capitalize on promising
+                opportunities in the ever-growing UAE real estate market. Joanna&apos;s in-depth knowledge of
+                upcoming projects, market trends, and potential returns empowers her clients to make informed
+                investment decisions and maximize their returns on investment.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 {['Off-Plan', 'Waterfront', 'Landmark Developments', 'Investment Advisory'].map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full border border-[#d0bc99] bg-[#f7f6f3] px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.1em] text-[#a8865c]"
+                    className="rounded-full border border-[#d0bc99] bg-[#f7f6f3] px-4 py-1.5 text-[11px] font-medium uppercase tracking-widest text-[#a8865c]"
                   >
                     {tag}
                   </span>
@@ -201,7 +223,7 @@ export function ServicesPage() {
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
                 </div>
                 <div className="absolute inset-x-0 bottom-0 p-6">
                   <p className="text-[10px] uppercase tracking-[0.2em] text-[#d0bc99]">{project.location}</p>
@@ -214,7 +236,7 @@ export function ServicesPage() {
       </section>
 
       {/* Secondary aviation video — full-width banner */}
-      <section className="relative flex min-h-[400px] items-center overflow-hidden text-white sm:min-h-[460px]">
+      <section className="relative flex min-h-100 items-center overflow-hidden text-white sm:min-h-115">
         <video
           autoPlay
           loop
@@ -228,7 +250,7 @@ export function ServicesPage() {
           <source src={charterVideo.webm} type="video/webm" />
           <source src={charterVideo.ogv} type="video/ogg" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#061111]/90 via-[#071919]/55 to-[#071919]/35" />
+        <div className="absolute inset-0 bg-linear-to-r from-[#061111]/90 via-[#071919]/55 to-[#071919]/35" />
         <div className="relative z-10 flex h-full items-center px-6 sm:px-10 lg:px-20">
           <Reveal>
             <div className="max-w-lg text-white">

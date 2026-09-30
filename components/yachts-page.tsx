@@ -94,14 +94,14 @@ export function YachtsPage() {
                       fill
                       className="object-cover transition-transform duration-[1.8s] ease-out group-hover:scale-[1.12]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent" />
 
                     {/* Top gradient bar for badge contrast */}
-                    <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/40 to-transparent" />
+                    <div className="absolute inset-x-0 top-0 h-20 bg-linear-to-b from-black/40 to-transparent" />
 
                     {/* Badges */}
                     <div className="absolute left-4 top-4 flex gap-2">
-                      <span className="rounded-full bg-[#d0bc99] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-[#0b1818] shadow-sm">
+                      <span className="rounded-full bg-[#d0bc99] px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-[#0b1818] shadow-sm">
                         {yacht.badge}
                       </span>
                       <span className="rounded-full border border-white/20 bg-[#102522]/75 px-3 py-1 text-[10px] font-medium text-white backdrop-blur-xl">
@@ -137,28 +137,31 @@ export function YachtsPage() {
                   </div>
 
                   {/* Card footer */}
-                  <div className="flex items-center justify-between bg-[#102522] px-5 py-5">
-                    <div className="flex gap-2.5">
-                      <div className="rounded-xl bg-white/10 px-3 py-2 text-center ring-1 ring-white/10">
-                        <p className="text-[9px] uppercase tracking-[0.15em] text-[#a8865c]">Price</p>
-                        <p className="text-xs font-semibold text-white">{yacht.price}</p>
+                  <div className="bg-[#102522] px-5 py-5">
+                    <p className="line-clamp-2 text-xs leading-5 text-white/60">{yacht.description}</p>
+                    <div className="mt-5 flex items-center justify-between gap-4">
+                      <div className="flex gap-2.5">
+                        <div className="rounded-xl bg-white/10 px-3 py-2 text-center ring-1 ring-white/10">
+                          <p className="text-[9px] uppercase tracking-[0.15em] text-[#a8865c]">Price</p>
+                          <p className="text-xs font-semibold text-white">{yacht.price}</p>
+                        </div>
+                        <div className="rounded-xl bg-white/10 px-3 py-2 text-center ring-1 ring-white/10">
+                          <p className="text-[9px] uppercase tracking-[0.15em] text-[#a8865c]">Length</p>
+                          <p className="text-xs font-semibold text-white">{yacht.length}</p>
+                        </div>
                       </div>
-                      <div className="rounded-xl bg-white/10 px-3 py-2 text-center ring-1 ring-white/10">
-                        <p className="text-[9px] uppercase tracking-[0.15em] text-[#a8865c]">Length</p>
-                        <p className="text-xs font-semibold text-white">{yacht.length}</p>
-                      </div>
+                      <Link
+                        href={`/yachts/${yacht.slug}`}
+                        className="group/btn flex items-center gap-2 rounded-full bg-[#0b1818] px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.12em] text-white transition-all duration-300 hover:bg-[#d0bc99] hover:text-[#0b1818] hover:shadow-md"
+                      >
+                        View
+                        <ArrowRight className="size-3 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                      </Link>
                     </div>
-                    <Link
-                      href={`/yachts/${yacht.slug}`}
-                      className="group/btn flex items-center gap-2 rounded-full bg-[#0b1818] px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.12em] text-white transition-all duration-300 hover:bg-[#d0bc99] hover:text-[#0b1818] hover:shadow-md"
-                    >
-                      View
-                      <ArrowRight className="size-3 transition-transform duration-300 group-hover/btn:translate-x-1" />
-                    </Link>
                   </div>
 
                   {/* Bottom accent line on hover */}
-                  <div className="absolute inset-x-0 bottom-0 h-0.5 origin-left scale-x-0 bg-gradient-to-r from-[#d0bc99] to-[#a8865c] transition-transform duration-500 group-hover:scale-x-100" />
+                  <div className="absolute inset-x-0 bottom-0 h-0.5 origin-left scale-x-0 bg-linear-to-r from-[#d0bc99] to-[#a8865c] transition-transform duration-500 group-hover:scale-x-100" />
                 </motion.article>
               ))}
             </AnimatePresence>
