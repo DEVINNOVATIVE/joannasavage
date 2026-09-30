@@ -39,7 +39,7 @@ export function SiteFooter() {
           <Eyebrow>Contact</Eyebrow>
           <ul className="mt-4 space-y-3 text-xs text-white/70">
             <li><a href="tel:+971562330110" className="transition-colors hover:text-[#c5ad89]">+971 56 233 0110</a></li>
-            <li><a href="mailto:info@joannasavage.com" className="transition-colors hover:text-[#c5ad89]">info@joannasavage.com</a></li>
+            <li><a href="mailto:joanna@joannasavage.com" className="transition-colors hover:text-[#c5ad89]">joanna@joannasavage.com</a></li>
           </ul>
         </div>
       </div>

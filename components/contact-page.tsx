@@ -19,8 +19,8 @@ const affiliationLogos = [
 
 const contactDetails = [
   { label: 'Phone', value: '+971 56 233 0110', href: 'tel:+971562330110' },
-  { label: 'Email', value: 'info@joannasavage.com', href: 'mailto:info@joannasavage.com' },
-  { label: 'Location', value: 'Dubai, UAE', href: null },
+  { label: 'Email', value: 'joanna@joannasavage.com', href: 'mailto:joanna@joannasavage.com' },
+  { label: 'Location', value: 'Palm Jameirah, Dubai - UAE', href: null },
 ]
 
 const serviceOptions = [
@@ -50,16 +50,9 @@ export function ContactPage() {
           <Reveal>
             <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0b1818] to-[#172727] p-8 text-white sm:p-10">
               {/* Decorative image */}
-              <div className="absolute -right-12 -top-12 h-48 w-48 opacity-10">
-                <Image
-                  src="/assets/js logo.png"
-                  alt=""
-                  fill
-                  className="object-contain"
-                />
-              </div>
+            
 
-              <Eyebrow>Joanna Savage</Eyebrow>
+           
               <h2 className="mt-4 text-3xl font-semibold tracking-tight">Request a call back</h2>
               <p className="mt-5 text-sm leading-7 text-white/60">
                 Whether you are looking for a private jet, a super yacht, an exclusive property or
@@ -84,22 +77,7 @@ export function ContactPage() {
                 ))}
               </div>
 
-              {/* Affiliations */}
-              <div className="mt-10 border-t border-white/10 pt-8">
-                <p className="text-[10px] uppercase tracking-[0.22em] text-[#d0bc99]">Affiliations</p>
-                <div className="mt-4 flex flex-wrap gap-4">
-                  {affiliationLogos.map((item) => (
-                    <Image
-                      key={item.name}
-                      src={item.logo}
-                      alt={item.name}
-                      width={64}
-                      height={32}
-                      className="h-7 w-auto object-contain opacity-50 transition-opacity hover:opacity-100"
-                    />
-                  ))}
-                </div>
-              </div>
+            
             </div>
           </Reveal>
 
