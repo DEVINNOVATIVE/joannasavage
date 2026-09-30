@@ -53,7 +53,12 @@ export function YachtHero({ yacht }: { yacht: Yacht }) {
 
       <div className="relative z-10 flex flex-1 flex-col justify-between pt-24 pb-8">
         {/* Top Header & Navigation bar */}
-        <div className="mx-auto w-full max-w-[1680px] px-4 sm:px-8 lg:px-12">
+        <motion.div
+          initial={{ opacity: 0, y: -16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          className="mx-auto w-full max-w-[1680px] px-4 sm:px-8 lg:px-12"
+        >
           <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
             <Link
               href="/yachts"
@@ -71,7 +76,7 @@ export function YachtHero({ yacht }: { yacht: Yacht }) {
               </span>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* 3-Panel Peek Carousel */}
         <div className="relative my-auto flex w-full items-center justify-center overflow-visible py-4">
@@ -178,7 +183,12 @@ export function YachtHero({ yacht }: { yacht: Yacht }) {
         </div>
 
         {/* Floating Spec Bar Dock & Navigation Thumbnails */}
-        <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          className="mx-auto w-full max-w-[1200px] px-4 sm:px-8"
+        >
           <div className="rounded-2xl border border-white/10 bg-[#0d1d1a]/80 p-3.5 shadow-2xl backdrop-blur-xl sm:p-4">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
               {/* Spec Chips */}
@@ -229,7 +239,7 @@ export function YachtHero({ yacht }: { yacht: Yacht }) {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

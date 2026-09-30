@@ -17,7 +17,7 @@ const services = [
     title: 'Private Aviation',
     image: aviationImage,
     body: 'Seamless, discreet travel solutions tailored to your world.',
-    href: '/services',
+    href: '/contact',
   },
   {
     index: '02',
@@ -25,7 +25,7 @@ const services = [
     title: 'Super Yachts',
     image: yachtImage,
     body: 'Exceptional vessels and unforgettable journeys across the globe.',
-    href: '/yachts',
+    href: '/contact',
   },
   {
     index: '03',
@@ -33,7 +33,7 @@ const services = [
     title: 'Real Estate',
     image: realEstateImage,
     body: 'Distinctive properties for a life less ordinary.',
-    href: '/services',
+    href: '/contact',
   },
 ]
 
