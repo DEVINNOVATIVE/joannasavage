@@ -1,12 +1,13 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 
 const navLinks = [
-  { label: 'About', href: '/#about' },
+  { label: 'About', href: '/about' },
   { label: 'Services', href: '/services' },
   { label: 'Yachts', href: '/yachts' },
   { label: 'Contact', href: '/contact' },
@@ -21,8 +22,9 @@ export function SiteHeader({ transparent = true }: { transparent?: boolean }) {
         transparent ? 'text-white' : 'text-[#192327]'
       }`}
     >
-      <Link href="/" className="font-serif text-xl italic tracking-tight transition-opacity hover:opacity-80">
-        Joanna Savage
+      <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
+        <Image src="/assets/js logo.png" alt="Joanna Savage logo" width={132} height={132} className="rounded-full" />
+       
       </Link>
       <nav className="hidden items-center gap-8 md:flex">
         {navLinks.map((link) => (

@@ -44,17 +44,41 @@ export function VideoHero({
         <source src={heroVideo.webm} type="video/webm" />
         <source src={heroVideo.ogv} type="video/ogg" />
       </video>
-      <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 bg-linear-to-t from-[#061111]/95 via-black/55 to-black/35" />
+      <div className="absolute inset-0 bg-[#061111]/15" />
       <SiteHeader />
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-10 px-6 pt-16"
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], staggerChildren: 0.14 }}
+        className="relative z-10 max-w-3xl px-6 pt-16 drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]"
       >
-        <p className="mb-4 text-[10px] uppercase tracking-[0.38em] text-[#d0bc99]">{eyebrow}</p>
-        <h1 className="text-4xl font-semibold uppercase tracking-[-0.02em] sm:text-7xl">{title}</h1>
-        {description && <p className="mx-auto mt-6 max-w-md text-sm leading-6 text-white/75">{description}</p>}
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-5 text-[10px] font-medium uppercase tracking-[0.38em] text-[#e5cca4]"
+        >
+          {eyebrow}
+        </motion.p>
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+          className="text-5xl font-semibold uppercase leading-[0.95] tracking-[-0.02em] sm:text-7xl"
+        >
+          {title}
+        </motion.h1>
+        {description && (
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.22 }}
+            className="mx-auto mt-7 max-w-md text-sm font-medium leading-6 text-white/95 sm:text-base"
+          >
+            {description}
+          </motion.p>
+        )}
         {action && (
           <a
             href={action.href}
@@ -68,9 +92,13 @@ export function VideoHero({
         <a
           href={scrollTarget}
           aria-label="Scroll to the next section"
-          className="absolute bottom-7 left-1/2 z-10 flex h-12 w-7 -translate-x-1/2 items-start justify-center rounded-full border border-white/70 pt-2"
+          className="absolute bottom-7 left-1/2 z-10 flex h-12 w-7 -translate-x-1/2 items-start justify-center rounded-full border border-white/80 pt-2"
         >
-          <span className="h-2 w-1 rounded-full bg-white/90" />
+          <motion.span
+            animate={{ y: [0, 12, 0], opacity: [0.45, 1, 0.45] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+            className="h-2 w-1 rounded-full bg-white"
+          />
         </a>
       )}
     </section>
