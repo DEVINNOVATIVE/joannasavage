@@ -11,7 +11,7 @@ const charterVideo = {
 
 export function CharterBanner() {
   return (
-    <section className="relative flex min-h-120 items-center justify-center overflow-hidden text-center text-white sm:min-h-135">
+    <section className="relative flex min-h-[520px] items-center overflow-hidden text-white sm:min-h-[620px]">
       <video
         autoPlay
         loop
@@ -25,41 +25,19 @@ export function CharterBanner() {
         <source src={charterVideo.webm} type="video/webm" />
         <source src={charterVideo.ogv} type="video/ogg" />
       </video>
-      <div className="absolute inset-0 bg-linear-to-t from-[#061111]/90 via-[#071919]/55 to-[#071919]/45" />
-      <div className="absolute inset-x-6 top-8 h-px bg-white/25 sm:inset-x-10 lg:inset-x-20" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,20,18,0.82)_0%,rgba(7,20,18,0.45)_55%,rgba(7,20,18,0.25)_100%)]" />
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-10 max-w-2xl px-6 drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]"
+        className="relative z-10 mx-auto w-full max-w-7xl px-6 sm:px-10 lg:px-20"
       >
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-        >
-          <Eyebrow>Working exclusively with Sunseeker Global</Eyebrow>
-        </motion.div>
-        <motion.h2
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.25 }}
-          className="mt-5 text-4xl font-semibold leading-none tracking-tight sm:text-6xl"
-        >
-          Bespoke Luxury Charters
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.38 }}
-          className="mt-5 text-[10px] font-medium uppercase tracking-[0.3em] text-[#e5cca4]"
-        >
+        <Eyebrow light>Working exclusively with Sunseeker Global</Eyebrow>
+        <h2 className="mt-6 max-w-2xl font-display text-5xl leading-[0.92] sm:text-7xl">Bespoke Luxury Charters</h2>
+        <p className="mt-6 text-[11px] font-medium tracking-[0.32em] text-[#e8d5b0] uppercase">
           Aviation · Yachts · Property
-        </motion.p>
+        </p>
       </motion.div>
     </section>
   )

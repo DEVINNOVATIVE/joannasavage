@@ -5,7 +5,6 @@ import { motion } from 'framer-motion'
 import { VideoHero } from './shared/video-hero'
 import { Eyebrow } from './shared/eyebrow'
 import { Reveal } from './shared/reveal'
-import { CharterBanner } from './home/charter-banner'
 
 const jetMain = '/assets/joanna-savage-private-plane.jpg'
 const yachtMain = '/assets/Yacht.jpeg'
@@ -32,14 +31,31 @@ const serviceStats = [
   { value: '∞', label: 'Dedication to detail' },
 ]
 
+function Tags({ items }: { items: string[] }) {
+  return (
+    <div className="mt-8 flex flex-wrap gap-2">
+      {items.map((tag) => (
+        <span
+          key={tag}
+          className="rounded-full border border-[#c9a96a]/50 bg-white px-4 py-1.5 text-[11px] font-medium tracking-widest text-[#8a6f3e] uppercase"
+        >
+          {tag}
+        </span>
+      ))}
+    </div>
+  )
+}
+
 export function ServicesPage() {
   return (
-    <main className="bg-[#f8f7f4] text-[#192327]">
-      <VideoHero title="Services" />
+    <main className="bg-[#f3efe6] text-[#071412]">
+      <VideoHero
+        title="Private access"
+        description="Aviation, yachts and landmark property — curated with discretion and delivered with care."
+      />
 
-      {/* Stats bar */}
-      <section className="border-b border-[#e3e2de] bg-white px-6 py-12 sm:px-10 lg:px-20">
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-8 md:grid-cols-4">
+      <section className="border-b border-[#e7e1d4] bg-white px-6 py-14 sm:px-10 lg:px-20">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 md:grid-cols-4">
           {serviceStats.map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -47,160 +63,116 @@ export function ServicesPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="text-center"
+              className="text-center md:text-left"
             >
-              <p className="font-serif text-4xl italic text-[#a8865c]">{stat.value}</p>
-              <p className="mt-2 text-[10px] uppercase tracking-[0.2em] text-[#526064]">{stat.label}</p>
+              <p className="font-display text-5xl italic text-[#c9a96a]">{stat.value}</p>
+              <p className="mt-2 text-[11px] tracking-[0.2em] text-[#5d6668] uppercase">{stat.label}</p>
             </motion.div>
           ))}
         </div>
       </section>
 
-      {/* Aviation — full-bleed split */}
       <section className="px-6 py-24 sm:px-10 lg:px-20 lg:py-32">
-        <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-20">
+        <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal>
-            <div className="relative h-115 overflow-hidden rounded-2xl">
+            <div className="relative h-[460px] overflow-hidden rounded-[2rem]">
               <Image src={jetMain} alt="Private jet exterior" fill className="object-cover" />
-              <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent" />
             </div>
           </Reveal>
           <Reveal delay={0.15}>
             <div>
               <Eyebrow>Global access to luxury aviation</Eyebrow>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+              <h2 className="mt-4 font-display text-4xl tracking-tight sm:text-5xl">
                 Private Jets: Sales, Acquisition &amp; Charter
               </h2>
-              <p className="mt-6 text-sm leading-7 text-[#526064]">
+              <p className="mt-6 text-[15px] leading-8 text-[#5d6668]">
                 When it comes to selling your private jet, Joanna leverages her expertise and worldwide
                 connections to ensure maximum exposure and the best possible outcome. She employs targeted
                 marketing strategies and a comprehensive approach to attract qualified buyers and facilitate
                 a seamless transaction.
               </p>
-              <p className="mt-4 text-sm leading-7 text-[#526064]">
+              <p className="mt-4 text-[15px] leading-8 text-[#5d6668]">
                 Joanna&apos;s dedication to exceptional service extends beyond the buying and selling process.
                 She offers ongoing support and guidance, helping clients with aircraft management, charter
-                services, and maintenance. Her commitment to delivering unparalleled customer satisfaction
-                sets her apart in the industry.
+                services, and maintenance.
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                {['Aircraft Sourcing', 'Acquisition', 'Charter Management', 'Discreet Travel'].map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-[#d0bc99] bg-[#f7f6f3] px-4 py-1.5 text-[11px] font-medium uppercase tracking-widest text-[#a8865c]"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+              <Tags items={['Aircraft Sourcing', 'Acquisition', 'Charter Management', 'Discreet Travel']} />
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* Yachts — reversed split with overlay image */}
       <section className="bg-white px-6 py-24 sm:px-10 lg:px-20 lg:py-32">
-        <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-20">
+        <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal>
             <div>
               <Eyebrow>Elevate your yachting experience</Eyebrow>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+              <h2 className="mt-4 font-display text-4xl tracking-tight sm:text-5xl">
                 Trusted Super Yacht Sales &amp; Charter Expert
               </h2>
-              <p className="mt-6 text-sm leading-7 text-[#526064]">
+              <p className="mt-6 text-[15px] leading-8 text-[#5d6668]">
                 When it comes to super yacht sales, Joanna&apos;s expertise shines through. With her extensive
                 network and industry knowledge, she offers a curated selection of the finest super yachts on
                 the market. Whether you&apos;re looking for a sleek and contemporary vessel or a classic and
-                timeless beauty, Joanna has the expertise to guide you towards the perfect match. She ensures
-                that each transaction is smooth, transparent, and tailored to your specific needs and
-                preferences.
+                timeless beauty, Joanna has the expertise to guide you towards the perfect match.
               </p>
-              <p className="mt-4 text-sm leading-7 text-[#526064]">
+              <p className="mt-4 text-[15px] leading-8 text-[#5d6668]">
                 For those seeking the ultimate luxury getaway, Joanna&apos;s super yacht charter services are
-                second to none. With access to a wide range of luxurious and meticulously maintained yachts,
-                she can help you plan the perfect charter experience. Whether you desire a thrilling adventure
-                in exotic destinations or a serene escape to secluded islands, Joanna&apos;s attention to detail
-                and commitment to excellence ensure that every moment of your charter is unforgettable.
+                second to none — from exotic destinations to secluded islands, every moment is considered.
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                {['New Builds', 'Pre-Owned', 'Charter', 'Lifecycle Management'].map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-[#d0bc99] bg-[#f7f6f3] px-4 py-1.5 text-[11px] font-medium uppercase tracking-widest text-[#a8865c]"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+              <Tags items={['New Builds', 'Pre-Owned', 'Charter', 'Lifecycle Management']} />
             </div>
           </Reveal>
           <Reveal delay={0.15}>
-            <div className="relative h-115 overflow-hidden rounded-2xl">
+            <div className="relative h-[460px] overflow-hidden rounded-[2rem]">
               <Image src={yachtMain} alt="Luxury super yacht at sea" fill className="object-cover" />
-              <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent" />
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* Real Estate — full-bleed split with secondary image overlay */}
       <section className="px-6 py-24 sm:px-10 lg:px-20 lg:py-32">
-        <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-20">
+        <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal>
-            <div className="relative h-115 overflow-hidden rounded-2xl">
+            <div className="relative h-[460px] overflow-hidden rounded-[2rem]">
               <Image src={propertyMain} alt="Luxury waterfront residence" fill className="object-cover" />
               <Image
                 src={propertySecondary}
                 alt="Interior detail of luxury residence"
                 width={220}
                 height={220}
-                className="absolute -bottom-6 -right-6 rounded-xl border-4 border-[#f8f7f4] object-cover shadow-xl"
+                className="absolute -bottom-5 -right-4 hidden rounded-2xl border-8 border-[#f3efe6] object-cover shadow-xl sm:block"
               />
             </div>
           </Reveal>
           <Reveal delay={0.15}>
             <div>
               <Eyebrow>Unveiling exclusive Dubai real estate</Eyebrow>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+              <h2 className="mt-4 font-display text-4xl tracking-tight sm:text-5xl">
                 Luxury Sales &amp; Off-Plan Investments
               </h2>
-              <p className="mt-6 text-sm leading-7 text-[#526064]">
+              <p className="mt-6 text-[15px] leading-8 text-[#5d6668]">
                 When it comes to luxury sales, Joanna&apos;s expertise is unmatched. She offers a remarkable
                 portfolio of prestigious properties, including stunning villas, opulent mansions, and
-                exclusive luxury estates. Whether you&apos;re searching for a luxurious residence in a prime
-                location or an investment property with high potential, Joanna&apos;s extensive network and
-                market insights ensure that you find the perfect match.
+                exclusive luxury estates.
               </p>
-              <p className="mt-4 text-sm leading-7 text-[#526064]">
-                In addition to luxury sales, Joanna specializes in off-plan investments. She provides exclusive
-                access to a wide range of off-plan developments, allowing investors to capitalize on promising
-                opportunities in the ever-growing UAE real estate market. Joanna&apos;s in-depth knowledge of
-                upcoming projects, market trends, and potential returns empowers her clients to make informed
-                investment decisions and maximize their returns on investment.
+              <p className="mt-4 text-[15px] leading-8 text-[#5d6668]">
+                In addition to luxury sales, Joanna specializes in off-plan investments — exclusive access
+                to developments across the ever-growing UAE real estate market.
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                {['Off-Plan', 'Waterfront', 'Landmark Developments', 'Investment Advisory'].map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-[#d0bc99] bg-[#f7f6f3] px-4 py-1.5 text-[11px] font-medium uppercase tracking-widest text-[#a8865c]"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+              <Tags items={['Off-Plan', 'Waterfront', 'Landmark Developments', 'Investment Advisory']} />
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* Spotlight Projects — modern card grid */}
       <section className="bg-white px-6 py-24 sm:px-10 lg:px-20 lg:py-32">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-7xl">
           <Reveal>
-            <div className="text-center">
+            <div className="max-w-2xl">
               <Eyebrow>Selected work</Eyebrow>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Spotlight Projects</h2>
-              <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-[#526064]">
+              <h2 className="mt-4 font-display text-5xl tracking-tight">Spotlight Projects</h2>
+              <p className="mt-4 max-w-xl text-sm leading-7 text-[#5d6668]">
                 A curated selection of landmark developments and exclusive opportunities.
               </p>
             </div>
@@ -213,10 +185,9 @@ export function ServicesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                whileHover={{ y: -6 }}
-                className="group relative overflow-hidden rounded-2xl shadow-lg"
+                className="group relative overflow-hidden rounded-[2rem] shadow-lg"
               >
-                <div className="relative aspect-[1.6] overflow-hidden">
+                <div className="relative aspect-[1.55] overflow-hidden">
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -225,9 +196,9 @@ export function ServicesPage() {
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
                 </div>
-                <div className="absolute inset-x-0 bottom-0 p-6">
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-[#d0bc99]">{project.location}</p>
-                  <h3 className="mt-2 text-xl font-semibold text-white">{project.title}</h3>
+                <div className="absolute inset-x-0 bottom-0 p-7">
+                  <p className="text-[11px] tracking-[0.22em] text-[#e8d5b0] uppercase">{project.location}</p>
+                  <h3 className="mt-2 font-display text-3xl text-white">{project.title}</h3>
                 </div>
               </motion.article>
             ))}
@@ -235,28 +206,19 @@ export function ServicesPage() {
         </div>
       </section>
 
-      {/* Secondary aviation video — full-width banner */}
-      <section className="relative flex min-h-100 items-center overflow-hidden text-white sm:min-h-115">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          aria-hidden="true"
-          className="absolute inset-0 h-full w-full object-cover"
-        >
+      <section className="relative flex min-h-[420px] items-center overflow-hidden text-white">
+        <video autoPlay loop muted playsInline preload="metadata" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover">
           <source src={charterVideo.mp4} type="video/mp4" />
           <source src={charterVideo.webm} type="video/webm" />
           <source src={charterVideo.ogv} type="video/ogg" />
         </video>
-        <div className="absolute inset-0 bg-linear-to-r from-[#061111]/90 via-[#071919]/55 to-[#071919]/35" />
-        <div className="relative z-10 flex h-full items-center px-6 sm:px-10 lg:px-20">
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,20,18,0.88)_0%,rgba(7,20,18,0.45)_100%)]" />
+        <div className="relative z-10 px-6 sm:px-10 lg:px-20">
           <Reveal>
-            <div className="max-w-lg text-white">
-              <Eyebrow>Discretion & excellence</Eyebrow>
-              <h2 className="mt-3 text-2xl font-semibold sm:text-3xl">Every journey, effortlessly yours</h2>
-              <p className="mt-4 text-sm leading-7 text-white/70">
+            <div className="max-w-lg">
+              <Eyebrow light>Discretion & excellence</Eyebrow>
+              <h2 className="mt-4 font-display text-4xl sm:text-5xl">Every journey, effortlessly yours</h2>
+              <p className="mt-5 text-sm leading-7 text-white/70">
                 From the moment you enquire to the moment you arrive, every detail is handled with the
                 utmost care and confidentiality.
               </p>
@@ -264,8 +226,6 @@ export function ServicesPage() {
           </Reveal>
         </div>
       </section>
-
-      {/* <CharterBanner /> */}
     </main>
   )
 }

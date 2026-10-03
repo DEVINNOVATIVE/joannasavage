@@ -8,7 +8,7 @@ import { SiteFooter } from './shared/site-footer'
 
 export function JoannaSite() {
   return (
-    <main className="bg-[#f7f6f3] text-[#192327]">
+    <main className="bg-[#f3efe6] text-[#071412]">
       <Hero />
       <AboutSection />
       <CharterBanner />

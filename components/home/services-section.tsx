@@ -1,9 +1,9 @@
-
 'use client'
 
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { ArrowUpRight } from 'lucide-react'
 import { Eyebrow } from '../shared/eyebrow'
 
 const aviationImage = '/assets/luxury-private-jet.jpg'
@@ -17,7 +17,7 @@ const services = [
     title: 'Private Aviation',
     image: aviationImage,
     body: 'Seamless, discreet travel solutions tailored to your world.',
-    href: '/contact',
+    href: '/services',
   },
   {
     index: '02',
@@ -25,7 +25,7 @@ const services = [
     title: 'Super Yachts',
     image: yachtImage,
     body: 'Exceptional vessels and unforgettable journeys across the globe.',
-    href: '/contact',
+    href: '/yachts',
   },
   {
     index: '03',
@@ -33,107 +33,63 @@ const services = [
     title: 'Real Estate',
     image: realEstateImage,
     body: 'Distinctive properties for a life less ordinary.',
-    href: '/contact',
+    href: '/services',
   },
 ]
 
 export function ServicesSection() {
   return (
-    <section id="services" className="bg-[#f7f6f3] px-6 py-28 text-[#192327] sm:px-10 lg:px-20">
+    <section id="services" className="bg-[#f3efe6] px-6 py-28 text-[#071412] sm:px-10 lg:px-20">
       <div className="mx-auto max-w-7xl">
-        {/* Header with balanced modern split layout */}
-        <div className="flex flex-col gap-6 border-b border-neutral-200 pb-10 sm:flex-row sm:items-end sm:justify-between">
+        <div className="flex flex-col gap-6 border-b border-[#d8d2c4] pb-12 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <Eyebrow>Embrace the Extraordinary</Eyebrow>
-            <h2 className="mt-3 text-4xl font-light tracking-tight text-[#192327] sm:text-5xl">
-              Services
-            </h2>
-            <p className="mt-4 max-w-md text-sm leading-6 text-[#526064]">
-              Considered access to exceptional aircraft, yachts and property, shaped around the way
-              you want to live.
+            <h2 className="mt-4 font-display text-5xl tracking-tight sm:text-6xl">Services</h2>
+            <p className="mt-5 max-w-md text-sm leading-7 text-[#5d6668]">
+              Considered access to exceptional aircraft, yachts and property, shaped around the way you
+              want to live.
             </p>
           </div>
-
           <Link
             href="/services"
-            className="group inline-flex items-center gap-2 self-start rounded-full border border-neutral-300 bg-neutral-50 px-6 py-2.5 text-xs font-medium uppercase tracking-wider text-[#192327] transition-all duration-300 hover:border-[#192327] hover:bg-[#192327] hover:text-white sm:self-auto"
+            className="group inline-flex items-center gap-2 self-start rounded-full bg-[#071412] px-6 py-3 text-[11px] font-semibold tracking-[0.18em] text-white uppercase transition-colors hover:bg-[#c9a96a] hover:text-[#071412]"
           >
-            <span>Explore All</span>
-            <svg
-              className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
+            Explore all
+            <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
         </div>
 
-        {/* Cards Grid */}
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <div className="mt-12 grid gap-6 lg:grid-cols-3">
           {services.map((service, i) => (
             <motion.div
               key={service.title}
               initial={{ opacity: 0, y: 35 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.6, delay: i * 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
+              transition={{ duration: 0.6, delay: i * 0.12, ease: [0.21, 0.47, 0.32, 0.98] }}
             >
               <Link
                 href={service.href}
-                className="group relative block h-120 overflow-hidden rounded-md bg-neutral-100 shadow-md transition-shadow duration-500 hover:shadow-2xl"
+                className="group relative block h-[480px] overflow-hidden rounded-[2rem] bg-[#071412] shadow-[0_20px_50px_rgba(7,20,18,0.12)]"
               >
-                {/* Background Image with Zoom */}
                 <Image
                   src={service.image}
                   alt={service.title}
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-108"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                 />
-
-                {/* Dark Vignette Overlay to ensure text readability */}
-                <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/35 to-black/15 transition-opacity duration-500 group-hover:via-black/45" />
-
-                {/* Top Badge Area: Index number and interactive arrow */}
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,20,18,0.15)_0%,rgba(7,20,18,0.35)_40%,rgba(7,20,18,0.88)_100%)]" />
                 <div className="absolute inset-x-6 top-6 z-10 flex items-center justify-between">
-                  <span className="font-mono text-xs tracking-widest text-white/70">
-                    {service.index}
+                  <span className="text-[11px] tracking-[0.28em] text-white/70">{service.index}</span>
+                  <span className="flex size-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-md transition-all duration-300 group-hover:bg-[#c9a96a] group-hover:text-[#071412]">
+                    <ArrowUpRight className="size-4" />
                   </span>
-                  <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/15 text-white backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:bg-white group-hover:text-black">
-                    <svg
-                      className="h-4 w-4 -rotate-45 transition-transform duration-300 group-hover:rotate-0"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                  </div>
                 </div>
-
-                {/* Bottom Content Area */}
-                <div className="absolute inset-x-6 bottom-6 z-10 text-white">
-                  {/* Category Pill / Subtitle */}
-                  <span className="inline-block text-[11px] font-medium uppercase tracking-[0.2em] text-white/70">
-                    {service.category}
-                  </span>
-
-                  {/* Main Title */}
-                  <h3 className="mt-2 text-2xl font-light uppercase tracking-wide text-white">
-                    {service.title}
-                  </h3>
-
-                  {/* Body description */}
-                  <p className="mt-3 line-clamp-3 text-xs leading-relaxed text-neutral-200/90">
-                    {service.body}
-                  </p>
-
-                  {/* Animated hover accent bar */}
-                  <div className="mt-5 h-px w-full overflow-hidden bg-white/20">
-                    <div className="h-full w-0 bg-white transition-all duration-500 ease-out group-hover:w-full" />
-                  </div>
+                <div className="absolute inset-x-6 bottom-7 z-10 text-white">
+                  <span className="text-[11px] tracking-[0.22em] text-[#e8d5b0] uppercase">{service.category}</span>
+                  <h3 className="mt-2 font-display text-3xl">{service.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-white/70">{service.body}</p>
                 </div>
               </Link>
             </motion.div>

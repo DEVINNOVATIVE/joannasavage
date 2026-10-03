@@ -1,50 +1,62 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Eyebrow } from './eyebrow'
+import { navLinks } from './nav'
 
 export function SiteFooter() {
   return (
-    <footer className="bg-linear-to-br from-[#081414] via-[#0b1818] to-[#172727] px-6 py-16 text-white sm:px-10 lg:px-20">
-      <div className="mx-auto grid max-w-6xl gap-12 sm:grid-cols-2 lg:grid-cols-3">
-        <div>
-          <div className="flex items-center">
-            <Link
-              href="/"
-              aria-label="Joanna Savage home"
-              className="group inline-flex rounded-full transition-transform duration-300 hover:scale-105"
-            >
+    <footer className="relative overflow-hidden bg-[#071412] px-6 py-20 text-white sm:px-10 lg:px-20">
+      <div className="pointer-events-none absolute -right-24 top-0 h-72 w-72 rounded-full bg-[#c9a96a]/10 blur-3xl" />
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-14 lg:grid-cols-[1.3fr_0.8fr_0.9fr]">
+          <div>
+            <Link href="/" className="inline-flex items-center gap-3">
               <Image
                 src="/assets/js logo.png"
                 alt="Joanna Savage logo"
-                width={96}
-                height={96}
+                width={64}
+                height={64}
                 className="rounded-full"
               />
+              <span className="font-display text-2xl tracking-[0.12em] uppercase">Joanna Savage</span>
             </Link>
+            <p className="mt-6 max-w-md text-sm leading-7 text-white/50">
+              Private aviation, super yachts, real estate and future-forward consulting — delivered with
+              discretion for those who expect the extraordinary.
+            </p>
           </div>
-          <p className="mt-4 text-xs leading-6 text-white/50">
-            Private aviation, super yachts, real estate and future-forward business consulting.
-          </p>
+          <div>
+            <p className="text-[11px] tracking-[0.28em] text-[#c9a96a] uppercase">Explore</p>
+            <ul className="mt-5 space-y-3 text-sm text-white/70">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="transition-colors hover:text-[#c9a96a]">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <p className="text-[11px] tracking-[0.28em] text-[#c9a96a] uppercase">Studio</p>
+            <ul className="mt-5 space-y-3 text-sm text-white/70">
+              <li>
+                <a href="tel:+971562330110" className="transition-colors hover:text-[#c9a96a]">
+                  +971 56 233 0110
+                </a>
+              </li>
+              <li>
+                <a href="mailto:joanna@joannasavage.com" className="transition-colors hover:text-[#c9a96a]">
+                  joanna@joannasavage.com
+                </a>
+              </li>
+              <li>Palm Jumeirah, Dubai — UAE</li>
+            </ul>
+          </div>
         </div>
-        <div>
-          <Eyebrow>Explore</Eyebrow>
-          <ul className="mt-4 space-y-3 text-xs text-white/70">
-            <li><Link href="/about" className="transition-colors hover:text-[#c5ad89]">About</Link></li>
-            <li><Link href="/services" className="transition-colors hover:text-[#c5ad89]">Services</Link></li>
-            <li><Link href="/yachts" className="transition-colors hover:text-[#c5ad89]">Yachts</Link></li>
-            <li><Link href="/contact" className="transition-colors hover:text-[#c5ad89]">Contact</Link></li>
-          </ul>
+        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-6 text-[11px] tracking-[0.2em] text-white/35 uppercase sm:flex-row sm:items-center">
+          <p>© {new Date().getFullYear()} Joanna Savage. All rights reserved.</p>
+          <p>Private brokerage · Global advisory</p>
         </div>
-        <div>
-          <Eyebrow>Contact</Eyebrow>
-          <ul className="mt-4 space-y-3 text-xs text-white/70">
-            <li><a href="tel:+971562330110" className="transition-colors hover:text-[#c5ad89]">+971 56 233 0110</a></li>
-            <li><a href="mailto:joanna@joannasavage.com" className="transition-colors hover:text-[#c5ad89]">joanna@joannasavage.com</a></li>
-          </ul>
-        </div>
-      </div>
-      <div className="mx-auto mt-12 max-w-6xl border-t border-white/10 pt-6 text-center text-[10px] uppercase tracking-[0.2em] text-white/40">
-        © {new Date().getFullYear()} Joanna Savage. All rights reserved.
       </div>
     </footer>
   )

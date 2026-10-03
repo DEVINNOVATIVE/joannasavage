@@ -264,9 +264,9 @@ export function YachtHero({ yacht }: { yacht: Yacht }) {
   const fullSpeed = yacht.specs.find(([label]) => label.toLowerCase().includes('speed'))?.[1]
 
   return (
-    <section className="bg-[#0b1818] text-white" onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
+    <section className="bg-[#071412] text-white" onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
       <SiteHeader />
-      <div className="mx-auto grid max-w-7xl gap-12 px-6 pb-16 pt-32 sm:px-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-center lg:gap-20 lg:px-12 lg:pb-24 lg:pt-36">
+      <div className="mx-auto grid max-w-7xl gap-12 px-6 pb-16 pt-36 sm:px-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-center lg:gap-20 lg:px-12 lg:pb-24 lg:pt-40">
         <motion.div
           initial={{ opacity: 0, x: -24 }}
           animate={{ opacity: 1, x: 0 }}
@@ -363,7 +363,7 @@ export function YachtHero({ yacht }: { yacht: Yacht }) {
 
 export function YachtSpecs({ yacht }: { yacht: Yacht }) {
   return (
-    <section className="border-t border-[#e3e2de] bg-[#f7f6f3] px-6 py-24 text-[#192327] sm:px-10 lg:px-20 lg:py-32">
+    <section className="border-t border-[#e7e1d4] bg-[#f3efe6] px-6 py-24 text-[#071412] sm:px-10 lg:px-20 lg:py-32">
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-16 lg:grid-cols-[1.2fr_0.8fr]">
           {/* Left: Overview description & Key Highlights */}
@@ -425,7 +425,7 @@ export function YachtSpecs({ yacht }: { yacht: Yacht }) {
 
 export function YachtEnquiry({ yacht }: { yacht: Yacht }) {
   return (
-    <section id="enquire" className="border-t border-[#d8d5cd] bg-[#f1eee8] px-6 py-20 text-[#192327] sm:px-10 lg:px-20">
+    <section id="enquire" className="border-t border-[#d8d2c4] bg-[#eee8dc] px-6 py-20 text-[#071412] sm:px-10 lg:px-20">
       <div className="mx-auto max-w-4xl text-center">
         <Reveal>
           <Eyebrow>Private Acquisition</Eyebrow>
@@ -439,7 +439,7 @@ export function YachtEnquiry({ yacht }: { yacht: Yacht }) {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Link
               href={`/contact?subject=${encodeURIComponent(`Enquiry for ${yacht.title}`)}`}
-              className="inline-flex items-center gap-2 rounded-full bg-[#d0bc99] px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.16em] text-[#091715] shadow-lg transition-all duration-300 hover:scale-105 hover:bg-white"
+              className="inline-flex items-center gap-2 rounded-full bg-[#c9a96a] px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.16em] text-[#071412] shadow-lg transition-all duration-300 hover:scale-105 hover:bg-white"
             >
               Contact Us <ArrowRight className="size-3.5" />
             </Link>

@@ -37,27 +37,25 @@ const affiliationLogos = [
 
 export function AboutPage() {
   return (
-    <main className="bg-[#f7f6f3] text-[#192327]">
-      <VideoHero title="About Me" eyebrow="Redefining luxury with expertise & philanthropy" />
+    <main className="bg-[#f3efe6] text-[#071412]">
+      <VideoHero
+        title="A life in luxury"
+        eyebrow="Redefining luxury with expertise & philanthropy"
+        description="Trusted advisor to high-profile clients across yachts, aviation, property and private consulting."
+      />
 
-      {/* Portrait + Bio */}
       <section className="px-6 py-24 sm:px-10 lg:px-20 lg:py-32">
-        <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[1fr_1fr] lg:gap-24">
+        <div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2 lg:gap-24">
           <Reveal y={30}>
-            <div className="relative mx-auto aspect-[0.78] w-full max-w-[420px] overflow-hidden rounded-md">
-              <Image
-                src={portraitImage}
-                alt="Joanna Savage"
-                fill
-                className="object-cover grayscale"
-              />
+            <div className="relative mx-auto aspect-[0.78] w-full max-w-[440px] overflow-hidden rounded-[2rem] shadow-[0_30px_80px_rgba(7,20,18,0.16)]">
+              <Image src={portraitImage} alt="Joanna Savage" fill className="object-cover grayscale" />
             </div>
           </Reveal>
           <Reveal delay={0.15}>
             <div className="max-w-xl">
               <Eyebrow>Meet Joanna</Eyebrow>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">About Me</h2>
-              <div className="mt-7 space-y-4 text-sm leading-7 text-[#526064]">
+              <h2 className="mt-4 font-display text-5xl tracking-tight">About Me</h2>
+              <div className="mt-8 space-y-5 text-[15px] leading-8 text-[#5d6668]">
                 <p>
                   Joanna is a highly successful and experienced luxury sales broker with an impressive
                   career that spans across Superyachts, Real Estate, Luxury Performance Yachts and Private
@@ -79,16 +77,15 @@ export function AboutPage() {
         </div>
       </section>
 
-      {/* Career Highlights */}
       <section className="bg-white px-6 py-24 sm:px-10 lg:px-20">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-7xl">
           <Reveal>
-            <div className="text-center">
+            <div className="max-w-2xl">
               <Eyebrow>A career in luxury</Eyebrow>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight">Career Highlights</h2>
+              <h2 className="mt-4 font-display text-5xl tracking-tight">Career Highlights</h2>
             </div>
           </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
             {careerHighlights.map((item, i) => (
               <motion.div
                 key={item.title}
@@ -96,27 +93,26 @@ export function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.5, delay: i * 0.12 }}
-                className="rounded-lg border border-[#e3e2de] bg-[#f7f6f3] p-8"
+                className="rounded-[1.75rem] border border-[#e7e1d4] bg-[#f3efe6] p-8"
               >
-                <h3 className="font-serif text-xl italic text-[#192327]">{item.title}</h3>
-                <p className="mt-2 text-[10px] uppercase tracking-[0.2em] text-[#a8865c]">{item.role}</p>
-                <p className="mt-4 text-sm leading-6 text-[#526064]">{item.description}</p>
+                <p className="text-[11px] tracking-[0.22em] text-[#c9a96a] uppercase">{item.role}</p>
+                <h3 className="mt-3 font-display text-3xl italic">{item.title}</h3>
+                <p className="mt-4 text-sm leading-7 text-[#5d6668]">{item.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Areas of Expertise */}
       <section className="px-6 py-24 sm:px-10 lg:px-20">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-7xl">
           <Reveal>
-            <div className="text-center">
+            <div className="max-w-2xl">
               <Eyebrow>What I do</Eyebrow>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight">Areas of Expertise</h2>
+              <h2 className="mt-4 font-display text-5xl tracking-tight">Areas of Expertise</h2>
             </div>
           </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
             {expertise.map((item, i) => (
               <motion.div
                 key={item.label}
@@ -124,7 +120,7 @@ export function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.5, delay: i * 0.12 }}
-                className="group relative min-h-[280px] overflow-hidden rounded-md text-white shadow-lg"
+                className="group relative min-h-[320px] overflow-hidden rounded-[2rem] text-white shadow-lg"
               >
                 <Image
                   src={item.image}
@@ -132,10 +128,10 @@ export function AboutPage() {
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
-                <div className="absolute inset-x-6 bottom-6">
-                  <h3 className="text-lg font-semibold uppercase">{item.label}</h3>
-                  <p className="mt-2 text-xs leading-5 text-white/80">{item.description}</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                <div className="absolute inset-x-7 bottom-7">
+                  <h3 className="font-display text-3xl">{item.label}</h3>
+                  <p className="mt-2 text-sm leading-6 text-white/75">{item.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -143,29 +139,23 @@ export function AboutPage() {
         </div>
       </section>
 
-      {/* Philanthropy */}
       <section className="bg-white px-6 py-24 sm:px-10 lg:px-20">
-        <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-24">
+        <div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2 lg:gap-24">
           <Reveal>
-            <div className="relative aspect-[1.5] overflow-hidden rounded-md">
-              <Image
-                src={consultingImage}
-                alt="Philanthropy and sustainable development"
-                fill
-                className="object-cover"
-              />
+            <div className="relative aspect-[1.5] overflow-hidden rounded-[2rem]">
+              <Image src={consultingImage} alt="Philanthropy and sustainable development" fill className="object-cover" />
             </div>
           </Reveal>
           <Reveal delay={0.15}>
             <div>
               <Eyebrow>Philanthropy</Eyebrow>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight">Sustainable Development Goals</h2>
-              <p className="mt-6 text-sm leading-7 text-[#526064]">
+              <h2 className="mt-4 font-display text-5xl tracking-tight">Sustainable Development Goals</h2>
+              <p className="mt-6 text-[15px] leading-8 text-[#5d6668]">
                 Joanna has a deep vested interest in philanthropic efforts that support the 17 sustainable
                 development goals set by the United Nations. Through strategic partnerships and
                 impact-focused investments, she works to align luxury with responsibility.
               </p>
-              <p className="mt-4 text-sm leading-7 text-[#526064]">
+              <p className="mt-4 text-[15px] leading-8 text-[#5d6668]">
                 From impact funds to community-driven projects, the mission is to create meaningful,
                 lasting change while delivering exceptional value to clients.
               </p>
@@ -174,14 +164,13 @@ export function AboutPage() {
         </div>
       </section>
 
-      {/* Global Reach */}
       <section className="px-6 py-24 sm:px-10 lg:px-20">
-        <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-24">
+        <div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2 lg:gap-24">
           <Reveal>
             <div>
               <Eyebrow>Global reach</Eyebrow>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight">Dubai & Beyond</h2>
-              <p className="mt-6 text-sm leading-7 text-[#526064]">
+              <h2 className="mt-4 font-display text-5xl tracking-tight">Dubai & Beyond</h2>
+              <p className="mt-6 text-[15px] leading-8 text-[#5d6668]">
                 Based in Dubai and operating globally, Joanna serves clients across the Middle East,
                 Europe, and beyond. Her international network spans family offices, developers, and
                 luxury brands, ensuring access to the most exceptional opportunities worldwide.
@@ -189,24 +178,18 @@ export function AboutPage() {
             </div>
           </Reveal>
           <Reveal delay={0.15}>
-            <div className="relative aspect-[1.5] overflow-hidden rounded-md">
-              <Image
-                src={dubaiImage}
-                alt="Dubai skyline"
-                fill
-                className="object-cover"
-              />
+            <div className="relative aspect-[1.5] overflow-hidden rounded-[2rem]">
+              <Image src={dubaiImage} alt="Dubai skyline" fill className="object-cover" />
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* Affiliations */}
       <section className="bg-white px-6 py-20 sm:px-10 lg:px-20">
-        <div className="mx-auto max-w-6xl text-center">
+        <div className="mx-auto max-w-7xl">
           <Eyebrow>Trusted partnerships</Eyebrow>
-          <h2 className="mt-3 text-2xl font-semibold">Exclusive Affiliations</h2>
-          <div className="mt-10 grid grid-cols-2 items-center gap-8 sm:grid-cols-5">
+          <h2 className="mt-4 font-display text-4xl">Exclusive Affiliations</h2>
+          <div className="mt-12 grid grid-cols-2 items-center gap-8 sm:grid-cols-5">
             {affiliationLogos.map((item, i) => (
               <motion.div
                 key={item.name}

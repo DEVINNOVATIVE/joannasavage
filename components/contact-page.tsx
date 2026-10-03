@@ -21,7 +21,7 @@ const affiliationLogos = [
 const contactDetails = [
   { label: 'Phone', value: '+971 56 233 0110', href: 'tel:+971562330110' },
   { label: 'Email', value: 'joanna@joannasavage.com', href: 'mailto:joanna@joannasavage.com' },
-  { label: 'Location', value: 'Palm Jameirah, Dubai - UAE', href: null },
+  { label: 'Location', value: 'Palm Jumeirah, Dubai - UAE', href: null },
 ]
 
 const serviceOptions = [
@@ -36,25 +36,25 @@ export function ContactPage() {
   const [selectedService, setSelectedService] = useState('General Enquiry')
 
   return (
-    <main className="bg-[#f7f6f3] text-[#192327]">
+    <main className="bg-[#f3efe6] text-[#071412]">
       <VideoHero
-        title="Get in touch"
+        title="Let's begin"
         eyebrow="Private aviation · Super yachts · Real estate"
-        description="We look forward to hearing from you."
+        description="We look forward to hearing from you — every enquiry is handled personally and in confidence."
       />
 
-      <section className="border-b border-[#e3e2de] bg-white px-6 py-16 sm:px-10 lg:px-20 lg:py-20">
-        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:gap-20">
+      <section className="border-b border-[#e7e1d4] bg-white px-6 py-16 sm:px-10 lg:px-20 lg:py-20">
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
           <Reveal>
             <div>
               <Eyebrow>A considered first step</Eyebrow>
-              <h2 className="mt-4 max-w-3xl text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl">
+              <h2 className="mt-4 max-w-3xl font-display text-5xl leading-[1.02] tracking-tight sm:text-6xl">
                 Let&apos;s make the extraordinary feel effortless.
               </h2>
             </div>
           </Reveal>
           <Reveal delay={0.12}>
-            <p className="max-w-lg text-sm leading-7 text-[#526064]">
+            <p className="max-w-lg text-[15px] leading-8 text-[#5d6668]">
               Every enquiry begins with a conversation. Tell us what you are looking for and we will
               connect you with considered advice, trusted access and a clear next step.
             </p>
@@ -62,13 +62,10 @@ export function ContactPage() {
         </div>
       </section>
 
-      {/* Contact section */}
       <section className="px-6 py-24 sm:px-10 lg:px-20 lg:py-32">
-        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-
-          {/* Left: Contact info panel */}
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <Reveal>
-            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0b1818] to-[#172727] text-white shadow-[0_24px_70px_rgba(11,24,24,0.18)]">
+            <div className="overflow-hidden rounded-[2rem] bg-[#071412] text-white shadow-[0_24px_70px_rgba(7,20,18,0.18)]">
               <div className="relative h-56 overflow-hidden">
                 <Image
                   src="/assets/joanna-savage-black.jpg"
@@ -76,49 +73,42 @@ export function ContactPage() {
                   fill
                   className="object-cover object-[center_28%] grayscale"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0b1818] via-[#0b1818]/20 to-transparent" />
-                <p className="absolute bottom-5 left-8 text-[10px] font-medium uppercase tracking-[0.25em] text-[#d0bc99] sm:left-10">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#071412] via-[#071412]/20 to-transparent" />
+                <p className="absolute bottom-5 left-8 text-[11px] tracking-[0.25em] text-[#c9a96a] uppercase">
                   Private advisory
                 </p>
               </div>
               <div className="p-8 sm:p-10">
-                <h2 className="text-3xl font-semibold tracking-tight">Request a call back</h2>
+                <h2 className="font-display text-4xl">Request a call back</h2>
                 <p className="mt-5 text-sm leading-7 text-white/60">
-                Whether you are looking for a private jet, a super yacht, an exclusive property or
-                strategic consulting — Joanna and her team are ready to help.
+                  Whether you are looking for a private jet, a super yacht, an exclusive property or
+                  strategic consulting — Joanna and her team are ready to help.
                 </p>
-
                 <div className="mt-10 space-y-6">
-                {contactDetails.map((item) => (
-                  <div key={item.label}>
-                    <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-[#d0bc99]">
-                      {item.label === 'Phone' && <Phone className="size-3.5" />}
-                      {item.label === 'Email' && <Mail className="size-3.5" />}
-                      {item.label === 'Location' && <MapPin className="size-3.5" />}
-                      {item.label}
+                  {contactDetails.map((item) => (
+                    <div key={item.label}>
+                      <div className="flex items-center gap-2 text-[11px] tracking-[0.22em] text-[#c9a96a] uppercase">
+                        {item.label === 'Phone' && <Phone className="size-3.5" />}
+                        {item.label === 'Email' && <Mail className="size-3.5" />}
+                        {item.label === 'Location' && <MapPin className="size-3.5" />}
+                        {item.label}
+                      </div>
+                      {item.href ? (
+                        <a href={item.href} className="mt-1.5 block text-sm text-white/80 transition-colors hover:text-white">
+                          {item.value}
+                        </a>
+                      ) : (
+                        <p className="mt-1.5 text-sm text-white/80">{item.value}</p>
+                      )}
                     </div>
-                    {item.href ? (
-                      <a
-                        href={item.href}
-                        className="mt-1.5 block text-sm text-white/80 transition-colors hover:text-white"
-                      >
-                        {item.value}
-                      </a>
-                    ) : (
-                      <p className="mt-1.5 text-sm text-white/80">{item.value}</p>
-                    )}
-                  </div>
-                ))}
+                  ))}
                 </div>
-
                 <div className="mt-10 border-t border-white/10 pt-6">
                   <div className="flex items-start gap-3">
-                    <Clock3 className="mt-0.5 size-4 text-[#d0bc99]" />
+                    <Clock3 className="mt-0.5 size-4 text-[#c9a96a]" />
                     <div>
                       <p className="text-sm font-medium text-white">A response within 24 hours</p>
-                      <p className="mt-1 text-xs leading-5 text-white/50">
-                        Discreet, personal and tailored to your enquiry.
-                      </p>
+                      <p className="mt-1 text-xs leading-5 text-white/50">Discreet, personal and tailored to your enquiry.</p>
                     </div>
                   </div>
                 </div>
@@ -126,17 +116,12 @@ export function ContactPage() {
             </div>
           </Reveal>
 
-          {/* Right: Form panel */}
           <Reveal delay={0.15}>
-            <div className="rounded-2xl bg-white p-8 shadow-lg sm:p-10">
-              <h2 className="text-2xl font-semibold text-[#192327]">Send a message</h2>
-              <p className="mt-2 text-sm text-[#526064]">
-                Fill in the form below and we&apos;ll get back to you within 24 hours.
-              </p>
-
-              {/* Service type pills */}
+            <div className="rounded-[2rem] bg-white p-8 shadow-[0_20px_60px_rgba(7,20,18,0.08)] sm:p-10">
+              <h2 className="font-display text-4xl">Send a message</h2>
+              <p className="mt-2 text-sm text-[#5d6668]">Fill in the form below and we&apos;ll get back to you within 24 hours.</p>
               <div className="mt-6">
-                <p className="text-[10px] uppercase tracking-[0.22em] text-[#a8865c]">I&apos;m interested in</p>
+                <p className="text-[11px] tracking-[0.22em] text-[#c9a96a] uppercase">I&apos;m interested in</p>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {serviceOptions.map((option) => (
                     <ServicePill
@@ -148,20 +133,19 @@ export function ContactPage() {
                   ))}
                 </div>
               </div>
-
               <ContactForm selectedService={selectedService} />
             </div>
           </Reveal>
         </div>
       </section>
 
-      <section className="border-y border-[#e3e2de] bg-white px-6 py-20 sm:px-10 lg:px-20">
-        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-20">
+      <section className="border-y border-[#e7e1d4] bg-white px-6 py-20 sm:px-10 lg:px-20">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
           <Reveal>
             <div>
               <Eyebrow>From enquiry to insight</Eyebrow>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">What happens next</h2>
-              <p className="mt-5 max-w-md text-sm leading-7 text-[#526064]">
+              <h2 className="mt-4 font-display text-4xl tracking-tight sm:text-5xl">What happens next</h2>
+              <p className="mt-5 max-w-md text-sm leading-7 text-[#5d6668]">
                 A simple, considered process designed around your priorities and your time.
               </p>
             </div>
@@ -173,10 +157,10 @@ export function ContactPage() {
               ['03', 'A clear direction', 'Together, we shape the next step with discretion and clarity.'],
             ].map(([number, title, description], index) => (
               <Reveal key={number} delay={index * 0.1}>
-                <div className="border-t border-[#d0bc99] pt-4">
-                  <p className="font-serif text-2xl italic text-[#a8865c]">{number}</p>
-                  <h3 className="mt-4 text-sm font-semibold uppercase tracking-[0.08em]">{title}</h3>
-                  <p className="mt-3 text-xs leading-6 text-[#526064]">{description}</p>
+                <div className="border-t border-[#c9a96a] pt-5">
+                  <p className="font-display text-3xl italic text-[#c9a96a]">{number}</p>
+                  <h3 className="mt-4 text-sm font-semibold tracking-[0.08em] uppercase">{title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-[#5d6668]">{description}</p>
                 </div>
               </Reveal>
             ))}
@@ -185,16 +169,16 @@ export function ContactPage() {
       </section>
 
       <section className="px-6 py-20 sm:px-10 lg:px-20">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-7xl">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-6">
               <div>
                 <Eyebrow>Trusted relationships</Eyebrow>
-                <h2 className="mt-3 text-3xl font-semibold tracking-tight">Built on experience</h2>
+                <h2 className="mt-3 font-display text-4xl tracking-tight">Built on experience</h2>
               </div>
               <a
                 href="mailto:joanna@joannasavage.com"
-                className="group inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.14em] text-[#192327] transition-colors hover:text-[#a8865c]"
+                className="group inline-flex items-center gap-2 text-[11px] font-medium tracking-[0.14em] text-[#071412] uppercase transition-colors hover:text-[#c9a96a]"
               >
                 Start a conversation
                 <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -232,10 +216,10 @@ function ServicePill({
       type="button"
       onClick={onClick}
       whileTap={{ scale: 0.96 }}
-      className={`rounded-full border px-4 py-2 text-[11px] font-medium uppercase tracking-[0.1em] transition-all ${
+      className={`rounded-full border px-4 py-2 text-[11px] font-medium tracking-[0.1em] uppercase transition-all ${
         selected
-          ? 'border-[#d0bc99] bg-[#0b1818] text-white'
-          : 'border-[#e3e2de] bg-[#f7f6f3] text-[#526064] hover:border-[#d0bc99] hover:bg-white hover:text-[#a8865c]'
+          ? 'border-[#071412] bg-[#071412] text-white'
+          : 'border-[#e7e1d4] bg-[#f3efe6] text-[#5d6668] hover:border-[#c9a96a] hover:text-[#c9a96a]'
       }`}
     >
       {label}

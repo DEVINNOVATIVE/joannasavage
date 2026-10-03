@@ -170,7 +170,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://images.unsplash.com" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
       </head>
-      <body className={`${montserrat.className} min-h-screen bg-[#091715] text-white antialiased`}>
+      <body className={`${montserrat.className} min-h-screen bg-[#f3efe6] text-[#071412] antialiased`}>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

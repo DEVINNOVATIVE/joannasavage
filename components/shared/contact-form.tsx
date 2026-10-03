@@ -68,7 +68,7 @@ export function ContactForm({ selectedService }: { selectedService?: string }) {
           disabled={state === 'loading' || state === 'success'}
           whileHover={state === 'idle' ? { scale: 1.02 } : undefined}
           whileTap={state === 'idle' ? { scale: 0.98 } : undefined}
-          className="group inline-flex items-center gap-2 rounded-full bg-[#0b1818] px-8 py-3.5 text-xs font-medium uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#172727] disabled:cursor-not-allowed disabled:opacity-60"
+          className="group inline-flex items-center gap-2 rounded-full bg-[#071412] px-8 py-3.5 text-xs font-medium uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#c9a96a] hover:text-[#071412] disabled:cursor-not-allowed disabled:opacity-60"
         >
           {state === 'loading' && (
             <>
@@ -142,10 +142,10 @@ function FormField({
   const [focused, setFocused] = useState(false)
 
   const baseClass =
-    'w-full rounded-xl border bg-[#f7f6f3] px-4 text-sm text-[#192327] outline-none transition-all duration-200'
+    'w-full rounded-xl border bg-[#f3efe6] px-4 text-sm text-[#071412] outline-none transition-all duration-200'
   const borderClass = focused
-    ? 'border-[#d0bc99] bg-white shadow-[0_0_0_3px_rgba(208,188,153,0.15)]'
-    : 'border-[#e3e2de]'
+    ? 'border-[#c9a96a] bg-white shadow-[0_0_0_3px_rgba(201,169,106,0.16)]'
+    : 'border-[#e7e1d4]'
 
   return (
     <div className={`relative ${className}`}>
@@ -153,7 +153,7 @@ function FormField({
         <span
           className={`block ${
             focused
-              ? '-translate-y-2.5 text-[10px] uppercase tracking-[0.15em] text-[#a8865c] bg-white px-1'
+              ? '-translate-y-2.5 text-[10px] uppercase tracking-[0.15em] text-[#c9a96a] bg-white px-1'
               : 'text-sm text-[#9ca3af] pt-3.5'
           }`}
         >
