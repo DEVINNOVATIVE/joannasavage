@@ -39,6 +39,7 @@ export function VideoHero({
         muted
         playsInline
         preload="metadata"
+        poster="/assets/luxury-yacht-.jpg"
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover"
       >

@@ -39,7 +39,7 @@ export function SiteHeader({ transparent = true }: { transparent?: boolean }) {
         className={`mx-auto flex max-w-[1600px] items-center justify-between px-5 py-2 transition-all duration-500 sm:px-8 lg:px-12 ${
           isSolid
             ? 'mt-0 bg-[#071412]/88 shadow-[0_12px_40px_rgba(7,20,18,0.35)] backdrop-blur-xl'
-            : 'mt-2 bg-transparent'
+            : 'mt-2 bg-[#071412]/35 backdrop-blur-sm sm:bg-transparent sm:backdrop-blur-none'
         }`}
       >
         <Link
@@ -52,6 +52,8 @@ export function SiteHeader({ transparent = true }: { transparent?: boolean }) {
             alt="Joanna Savage"
             width={270}
             height={90}
+            sizes="(max-width: 639px) 140px, (max-width: 1023px) 180px, 200px"
+            fetchPriority="high"
             className="h-auto w-[140px] sm:w-[180px] lg:w-[200px]"
             priority
           />
