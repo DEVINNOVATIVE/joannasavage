@@ -42,7 +42,11 @@ export function SiteHeader({ transparent = true }: { transparent?: boolean }) {
             : 'mt-2 bg-transparent'
         }`}
       >
-        <Link href="/" aria-label="Joanna Savage home" className="relative z-50 shrink-0">
+        <Link
+          href="/"
+          aria-label="Joanna Savage home"
+          className={`relative z-50 shrink-0 transition-opacity ${open ? 'pointer-events-none opacity-0' : 'opacity-100'}`}
+        >
           <Image
             src="/assets/js logo.png"
             alt="Joanna Savage"
@@ -96,9 +100,13 @@ export function SiteHeader({ transparent = true }: { transparent?: boolean }) {
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
           onClick={() => setOpen((value) => !value)}
-          className="relative z-50 flex size-11 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white backdrop-blur-md lg:hidden"
+          className={`relative z-50 flex size-11 items-center justify-center rounded-2xl border text-white backdrop-blur-md transition-colors lg:hidden ${
+            open
+              ? 'pointer-events-none border-transparent bg-transparent text-transparent opacity-0'
+              : 'border-white/15 bg-white/10'
+          }`}
         >
-          {open ? <X className="size-5" /> : <Menu className="size-5" />}
+          {open ? <X className="size-5" strokeWidth={2.25} /> : <Menu className="size-5" />}
         </button>
       </div>
 
@@ -108,10 +116,39 @@ export function SiteHeader({ transparent = true }: { transparent?: boolean }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-[#071412] lg:hidden"
+            onClick={() => setOpen(false)}
+            className="fixed inset-0 z-40 bg-[#071412]/80 backdrop-blur-sm lg:hidden"
           >
-            <div className="flex h-full flex-col justify-between px-7 pb-10 pt-28">
-              <nav className="flex flex-col gap-2">
+            <motion.div
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              onClick={(event) => event.stopPropagation()}
+              className="relative flex h-full w-full flex-col justify-between bg-[linear-gradient(145deg,rgba(7,20,18,0.99),rgba(15,34,31,0.98))] px-6 pb-8 pt-6 shadow-[0_-20px_60px_rgba(0,0,0,0.28)] sm:px-10 sm:pb-10"
+            >
+              <div>
+                <div className="flex items-center justify-between border-b border-white/10 pb-5">
+                  <Image
+                    src="/assets/js logo.png"
+                    alt="Joanna Savage"
+                    width={270}
+                    height={90}
+                    className="h-auto w-[150px]"
+                  />
+                  <button
+                    type="button"
+                    aria-label="Close menu"
+                    onClick={() => setOpen(false)}
+                    className="flex size-11 items-center justify-center rounded-2xl border border-[#c9a96a]/70 bg-[#c9a96a] text-[#071412] transition-transform hover:scale-105"
+                  >
+                    <X className="size-5" strokeWidth={2.25} />
+                  </button>
+                </div>
+                <p className="mt-8 text-[10px] tracking-[0.3em] text-[#c9a96a] uppercase">Private access</p>
+              </div>
+
+              <nav className="my-8 flex flex-1 flex-col justify-center">
                 {navLinks.map((link, index) => (
                   <motion.div
                     key={link.href}
@@ -122,13 +159,14 @@ export function SiteHeader({ transparent = true }: { transparent?: boolean }) {
                     <Link
                       href={link.href}
                       onClick={() => setOpen(false)}
-                      className={`block font-display text-5xl leading-none ${
+                      className={`flex items-center justify-between border-b border-white/10 py-3.5 font-display text-3xl leading-none transition-colors sm:text-4xl ${
                         (link.href === '/' ? pathname === '/' : pathname.startsWith(link.href))
                           ? 'text-[#c9a96a]'
-                          : 'text-white'
+                          : 'text-white/90 hover:text-[#c9a96a]'
                       }`}
                     >
-                      {link.label}
+                      <span>{link.label}</span>
+                      <span className="font-sans text-[10px] tracking-[0.2em] text-white/35">0{index + 1}</span>
                     </Link>
                   </motion.div>
                 ))}
@@ -142,7 +180,7 @@ export function SiteHeader({ transparent = true }: { transparent?: boolean }) {
                 </a>
                 <p className="text-[11px] tracking-[0.2em] text-[#c9a96a] uppercase">Palm Jumeirah, Dubai</p>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

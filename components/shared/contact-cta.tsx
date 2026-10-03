@@ -15,7 +15,7 @@ export function ContactCta({
   eyebrow?: string
 }) {
   return (
-    <section className="relative overflow-hidden bg-[#0f221f] px-6 py-24 text-white sm:px-10 sm:py-28 lg:px-20">
+    <section className="relative overflow-hidden bg-[#0f221f] px-6 py-12 text-white sm:px-10 sm:py-14 lg:px-20">
       <div className="pointer-events-none absolute inset-y-0 right-0 w-1/2 bg-[radial-gradient(circle_at_center,rgba(201,169,106,0.16),transparent_62%)]" />
       <motion.div
         initial={{ opacity: 0, y: 24 }}
