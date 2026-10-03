@@ -71,7 +71,7 @@ const siteDescription =
   'Experience the epitome of luxury with Joanna Savage. Explore a world where opulence meets sophistication across Supercars, Real Estate, Luxury Performance Yachts, and Private Aviation.'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://joannasavage.vercel.app'),
+  metadataBase: new URL('https://joannasavage.com'),
   title: {
     default: siteTitle,
     template: '%s · Joanna Savage',
