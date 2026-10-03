@@ -46,14 +46,14 @@ export function VideoHero({
         <source src={heroVideo.webm} type="video/webm" />
         <source src={heroVideo.ogv} type="video/ogg" />
       </video>
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,20,18,0.35)_0%,rgba(7,20,18,0.55)_45%,rgba(7,20,18,0.92)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,20,18,0.58)_0%,rgba(7,20,18,0.68)_45%,rgba(7,20,18,0.94)_100%)]" />
       <SiteHeader />
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-24 sm:px-10 lg:px-12">
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-[11px] font-medium tracking-[0.38em] text-[#e8d5b0] uppercase"
+          className="text-[11px] font-medium tracking-[0.38em] text-[#e8d5b0] uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]"
         >
           {eyebrow}
         </motion.p>
@@ -61,7 +61,7 @@ export function VideoHero({
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, delay: 0.08 }}
-          className="mt-6 max-w-4xl font-display text-6xl leading-[0.9] tracking-[-0.03em] sm:text-7xl lg:text-8xl"
+          className="mt-6 max-w-4xl font-display text-6xl leading-[0.9] tracking-[-0.03em] drop-shadow-[0_3px_18px_rgba(0,0,0,0.45)] sm:text-7xl lg:text-8xl"
         >
           {title}
         </motion.h1>
@@ -70,7 +70,7 @@ export function VideoHero({
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-7 max-w-xl text-base leading-8 text-white/78 sm:text-lg"
+            className="mt-7 max-w-xl text-base leading-8 text-white/88 drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)] sm:text-lg"
           >
             {description}
           </motion.p>
