@@ -5,19 +5,25 @@ import { navLinks } from './nav'
 export function SiteFooter() {
   return (
     <footer className="relative overflow-hidden bg-[#071412] px-6 py-20 text-white sm:px-10 lg:px-20">
-      <div className="pointer-events-none absolute -right-24 top-0 h-72 w-72 rounded-full bg-[#c9a96a]/10 blur-3xl" />
-      <div className="mx-auto max-w-7xl">
+      <Image
+        src="/assets/footer_img.jpg"
+        alt="Luxury cars in Dubai"
+        fill
+        sizes="100vw"
+        className="object-cover object-center"
+      />
+      <div className="absolute inset-0 bg-[#071412]/95" />
+      <div className="relative z-10 mx-auto max-w-7xl">
         <div className="grid gap-14 lg:grid-cols-[1.3fr_0.8fr_0.9fr]">
           <div>
-            <Link href="/" className="inline-flex items-center gap-3">
+            <Link href="/" aria-label="Joanna Savage home" className="inline-block">
               <Image
                 src="/assets/js logo.png"
                 alt="Joanna Savage logo"
-                width={64}
-                height={64}
-                className="rounded-full"
+                width={270}
+                height={90}
+                className="h-auto w-[180px]"
               />
-              <span className="font-display text-2xl tracking-[0.12em] uppercase">Joanna Savage</span>
             </Link>
             <p className="mt-6 max-w-md text-sm leading-7 text-white/50">
               Private aviation, super yachts, real estate and future-forward consulting — delivered with

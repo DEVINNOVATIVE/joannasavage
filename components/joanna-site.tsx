@@ -5,6 +5,8 @@ import { ServicesSection } from './home/services-section'
 import { ConsultingSection } from './home/consulting-section'
 import { ContactCta } from './shared/contact-cta'
 import { SiteFooter } from './shared/site-footer'
+import ExclusiveAffiliations from './home/affiliations'
+
 
 export function JoannaSite() {
   return (
@@ -14,6 +16,7 @@ export function JoannaSite() {
       <CharterBanner />
       <ServicesSection />
       <ConsultingSection />
+      <ExclusiveAffiliations/>
       <ContactCta
         title="Let's make the unbelievable — believable"
         subtitle="Reach out to discuss private aviation, super yachts, real estate or consulting."

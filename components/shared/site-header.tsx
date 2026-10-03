@@ -46,9 +46,9 @@ export function SiteHeader({ transparent = true }: { transparent?: boolean }) {
           <Image
             src="/assets/js logo.png"
             alt="Joanna Savage"
-            width={120}
-            height={120}
-            className="h-16 w-auto rounded-full ring-1 ring-white/15 sm:h-24 lg:h-[108px]"
+            width={270}
+            height={90}
+            className="h-auto w-[140px] sm:w-[180px] lg:w-[200px]"
             priority
           />
         </Link>

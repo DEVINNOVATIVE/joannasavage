@@ -96,40 +96,7 @@ export function ConsultingSection() {
           </Reveal>
         </div>
 
-        <div className="mt-20 border-t border-[#d8d2c4] pt-12">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <Eyebrow>Trusted by exceptional brands</Eyebrow>
-              <h2 className="mt-4 font-display text-3xl text-[#071412]">Exclusive Affiliations</h2>
-            </div>
-            <p className="max-w-xs text-sm leading-6 text-[#5d6668] sm:text-right">
-              A global network built on discretion, trust and shared standards.
-            </p>
-          </div>
-          <div className="relative mt-10 overflow-hidden" aria-label="Affiliation logos">
-            <motion.div
-              animate={{ x: ['0%', '-50%'] }}
-              transition={{ duration: 24, repeat: Infinity, ease: 'linear' }}
-              className="flex w-max items-center gap-16 pr-16"
-            >
-              {[...affiliations, ...affiliations].map((item, i) => (
-                <div
-                  key={`${item.name}-${i}`}
-                  aria-hidden={i >= affiliations.length}
-                  className="flex h-20 w-40 shrink-0 items-center justify-center"
-                >
-                  <Image
-                    src={item.logo}
-                    alt={i >= affiliations.length ? '' : item.name}
-                    width={180}
-                    height={90}
-                    className="h-16 w-auto max-w-full object-contain opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
-                  />
-                </div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
+      
       </div>
     </section>
   )
