@@ -9,6 +9,7 @@ import { SiteFooter } from './shared/site-footer'
 import { Eyebrow } from './shared/eyebrow'
 import { Reveal } from './shared/reveal'
 import { ContactForm } from './shared/contact-form'
+import ExclusiveAffiliations from './home/affiliations'
 
 const affiliationLogos = [
   { name: 'Sunseeker', logo: '/assets/sunskeer.png' },
@@ -168,7 +169,7 @@ export function ContactPage() {
         </div>
       </section>
 
-      <section className="px-6 py-20 sm:px-10 lg:px-20">
+      {/* <section className="px-6 py-20 sm:px-10 lg:px-20">
         <div className="mx-auto max-w-7xl">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-6">
@@ -195,7 +196,9 @@ export function ContactPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
+
+      <ExclusiveAffiliations/>
 
       <SiteFooter />
     </main>
