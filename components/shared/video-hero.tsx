@@ -11,6 +11,10 @@ const heroVideo = {
   ogv: 'https://joannasavage.com/wp-content/themes/jo-savage/video/VELA%20by%20OMNIYAT.ogv',
 }
 
+const videoRequestAttributes: Record<string, string> = {
+  referrerPolicy: 'no-referrer',
+}
+
 type VideoHeroProps = {
   title: string
   eyebrow?: string
@@ -36,19 +40,20 @@ export function VideoHero({
       className={`relative flex min-h-screen items-center overflow-hidden bg-[#071412] text-white ${className}`}
     >
       <video
+        {...videoRequestAttributes}
         autoPlay
         loop
         muted
+        controls
         playsInline
         preload="metadata"
-        aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover"
       >
         <source src={heroVideo.mp4} type="video/mp4" />
         <source src={heroVideo.webm} type="video/webm" />
         <source src={heroVideo.ogv} type="video/ogg" />
       </video>
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,20,18,0.58)_0%,rgba(7,20,18,0.68)_45%,rgba(7,20,18,0.94)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(7,20,18,0.58)_0%,rgba(7,20,18,0.68)_45%,rgba(7,20,18,0.94)_100%)]" />
       <SiteHeader />
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-24 sm:px-10 lg:px-12">
         <motion.p
