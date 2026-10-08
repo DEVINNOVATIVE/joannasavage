@@ -7,5 +7,6 @@ export function Hero() {
       description="Discreet, bespoke luxury services for those who expect the extraordinary — aviation, yachts, property and private advisory."
       scrollTarget="#first_section"
     />
+    //g
   )
 }
