@@ -19,14 +19,13 @@ export function CharterBanner() {
         controls={true}
         playsInline
         preload="metadata"
-        aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover"
       >
         <source src={charterVideo.mp4} type="video/mp4" />
         <source src={charterVideo.webm} type="video/webm" />
         <source src={charterVideo.ogv} type="video/ogg" />
       </video>
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,20,18,0.82)_0%,rgba(7,20,18,0.45)_55%,rgba(7,20,18,0.25)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(7,20,18,0.82)_0%,rgba(7,20,18,0.45)_55%,rgba(7,20,18,0.25)_100%)]" />
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
