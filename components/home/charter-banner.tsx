@@ -16,10 +16,9 @@ export function CharterBanner() {
         autoPlay
         loop
         muted
-        controls
         playsInline
-        preload="auto"
-        // aria-hidden="true"
+        preload="metadata"
+        aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover"
       >
         <source src={charterVideo.mp4} type="video/mp4" />
