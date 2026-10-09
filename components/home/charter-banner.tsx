@@ -16,6 +16,7 @@ export function CharterBanner() {
         autoPlay
         loop
         muted
+        controls={true}
         playsInline
         preload="metadata"
         aria-hidden="true"
