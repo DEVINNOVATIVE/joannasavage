@@ -16,17 +16,18 @@ export function CharterBanner() {
         autoPlay
         loop
         muted
+        controls
         playsInline
-        preload="metadata"
-        aria-hidden="true"
+        preload="auto"
+        // aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover"
       >
         <source src={charterVideo.mp4} type="video/mp4" />
         <source src={charterVideo.webm} type="video/webm" />
         <source src={charterVideo.ogv} type="video/ogg" />
       </video>
-      {/* <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,20,18,0.82)_0%,rgba(7,20,18,0.45)_55%,rgba(7,20,18,0.25)_100%)]" /> */}
-      {/* <motion.div
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,20,18,0.82)_0%,rgba(7,20,18,0.45)_55%,rgba(7,20,18,0.25)_100%)]" />
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -38,7 +39,7 @@ export function CharterBanner() {
         <p className="mt-6 text-[11px] font-medium tracking-[0.32em] text-[#e8d5b0] uppercase">
           Aviation · Yachts · Property
         </p>
-      </motion.div> */}
+      </motion.div>
     </section>
   )
 }
