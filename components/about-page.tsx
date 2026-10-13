@@ -185,7 +185,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-white px-6 py-20 sm:px-10 lg:px-20">
+      {/* <section className="bg-white px-6 py-20 sm:px-10 lg:px-20">
         <div className="mx-auto max-w-7xl">
           <Eyebrow>Trusted partnerships</Eyebrow>
           <h2 className="mt-4 font-display text-4xl">Exclusive Affiliations</h2>
@@ -210,7 +210,8 @@ export function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
+      
 
       <ContactCta
         title="Let's work together"
