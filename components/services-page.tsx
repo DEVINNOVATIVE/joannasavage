@@ -206,7 +206,7 @@ export function ServicesPage() {
         </div>
       </section>
 
-      <section className="relative flex min-h-[420px] items-center overflow-hidden text-white">
+      {/* <section className="relative flex min-h-[420px] items-center overflow-hidden text-white">
         <video autoPlay loop muted playsInline preload="metadata" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover">
           <source src={charterVideo.mp4} type="video/mp4" />
           <source src={charterVideo.webm} type="video/webm" />
@@ -225,7 +225,7 @@ export function ServicesPage() {
             </div>
           </Reveal>
         </div>
-      </section>
+      </section> */}
     </main>
   )
 }
