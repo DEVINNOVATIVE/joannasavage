@@ -225,7 +225,7 @@ export function CharterBanner() {
   }, [])
 
   return (
-    <section className="relative flex min-h-[500px] sm:min-h-[580px] lg:min-h-[640px] items-center overflow-hidden bg-[#1d2927] text-white">
+    <section className="relative flex min-h-[500px] sm:min-h-[580px] lg:min-h-[640px] items-center overflow-hidden bg-[#1d2927] text-white  py-6">
       {/* Cinematic Deep Horizon Background Gradient */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(12,38,34,0.7),transparent_70%)]" />
 
