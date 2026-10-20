@@ -72,6 +72,7 @@ export function ContactPage() {
                   src="/assets/joanna-savage-black.jpg"
                   alt="Joanna Savage"
                   fill
+                  sizes="(max-width: 1024px) 100vw, 420px"
                   className="object-cover object-[center_28%] grayscale"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#071412] via-[#071412]/20 to-transparent" />

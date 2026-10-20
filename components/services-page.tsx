@@ -11,12 +11,6 @@ const yachtMain = '/assets/Yacht.jpeg'
 const propertyMain = '/assets/luxury-real-estate-1.jpg'
 const propertySecondary = '/assets/luxury-real-estate.jpg'
 
-const charterVideo = {
-  mp4: 'https://joannasavage.com/wp-content/themes/jo-savage/video/view-from-copter.mp4',
-  webm: 'https://joannasavage.com/wp-content/themes/jo-savage/video/view-from-copter.webm',
-  ogv: 'https://joannasavage.com/wp-content/themes/jo-savage/video/view-from-copter.ogv',
-}
-
 const spotlightProjects = [
   { title: 'BUGATTI x Binghatti', location: 'Dubai', image: '/assets/BUGATTI x Binghatti.jpg' },
   { title: 'VELA — Dorchester Collection', location: 'Dubai', image: '/assets/VELA - Dorchester Collection.jpeg' },
@@ -76,7 +70,7 @@ export function ServicesPage() {
         <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal>
             <div className="relative h-[460px] overflow-hidden rounded-[2rem]">
-              <Image src={jetMain} alt="Private jet exterior" fill className="object-cover" />
+              <Image src={jetMain} alt="Private jet exterior" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
             </div>
           </Reveal>
           <Reveal delay={0.15}>
@@ -125,7 +119,7 @@ export function ServicesPage() {
           </Reveal>
           <Reveal delay={0.15}>
             <div className="relative h-[460px] overflow-hidden rounded-[2rem]">
-              <Image src={yachtMain} alt="Luxury super yacht at sea" fill className="object-cover" />
+              <Image src={yachtMain} alt="Luxury super yacht at sea" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
             </div>
           </Reveal>
         </div>
@@ -135,7 +129,7 @@ export function ServicesPage() {
         <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal>
             <div className="relative h-[460px] overflow-hidden rounded-[2rem]">
-              <Image src={propertyMain} alt="Luxury waterfront residence" fill className="object-cover" />
+              <Image src={propertyMain} alt="Luxury waterfront residence" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
               <Image
                 src={propertySecondary}
                 alt="Interior detail of luxury residence"
@@ -192,6 +186,7 @@ export function ServicesPage() {
                     src={project.image}
                     alt={project.title}
                     fill
+                    sizes="(max-width: 640px) 100vw, 50vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
@@ -206,26 +201,6 @@ export function ServicesPage() {
         </div>
       </section>
 
-      {/* <section className="relative flex min-h-[420px] items-center overflow-hidden text-white">
-        <video autoPlay loop muted playsInline preload="metadata" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover">
-          <source src={charterVideo.mp4} type="video/mp4" />
-          <source src={charterVideo.webm} type="video/webm" />
-          <source src={charterVideo.ogv} type="video/ogg" />
-        </video>
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,20,18,0.88)_0%,rgba(7,20,18,0.45)_100%)]" />
-        <div className="relative z-10 px-6 sm:px-10 lg:px-20">
-          <Reveal>
-            <div className="max-w-lg">
-              <Eyebrow light>Discretion & excellence</Eyebrow>
-              <h2 className="mt-4 font-display text-4xl sm:text-5xl">Every journey, effortlessly yours</h2>
-              <p className="mt-5 text-sm leading-7 text-white/70">
-                From the moment you enquire to the moment you arrive, every detail is handled with the
-                utmost care and confidentiality.
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section> */}
     </main>
   )
 }

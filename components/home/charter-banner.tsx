@@ -288,7 +288,6 @@ export function CharterBanner() {
                     src={charterImages[activeIndex].src}
                     alt={charterImages[activeIndex].alt}
                     fill
-                    priority
                     sizes="(max-width: 768px) 100vw, 550px"
                     className="object-cover"
                   />

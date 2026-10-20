@@ -7,9 +7,6 @@ import { SiteHeader } from './site-header'
 
 const heroVideo = {
   mp4: '/assets/herov.mp4',
-  // mp4: 'https://joannasavage.com/wp-content/themes/jo-savage/video/VELA%20by%20OMNIYAT.mp4',
-  // webm: 'https://joannasavage.com/wp-content/themes/jo-savage/video/VELA%20by%20OMNIYAT.webm',
-  // ogv: 'https://joannasavage.com/wp-content/themes/jo-savage/video/VELA%20by%20OMNIYAT.ogv',
 }
 
 
@@ -43,7 +40,9 @@ export function VideoHero({
         loop
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
+        poster="/assets/og-banner.png"
+        aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover"
       >
         <source src={heroVideo.mp4} type="video/mp4" />

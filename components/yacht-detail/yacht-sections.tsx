@@ -109,6 +109,7 @@ function LegacyYachtHero({ yacht }: { yacht: Yacht }) {
                     alt={`${yacht.title} slide ${index + 1}`}
                     fill
                     priority={isActive}
+                    sizes="(max-width: 768px) 100vw, 62vw"
                     className="object-cover object-center"
                   />
 
@@ -221,7 +222,7 @@ function LegacyYachtHero({ yacht }: { yacht: Yacht }) {
                             : 'border-transparent opacity-40 hover:opacity-80'
                         }`}
                       >
-                        <Image src={img} alt={`View thumbnail ${i + 1}`} fill className="object-cover" />
+                        <Image src={img} alt={`View thumbnail ${i + 1}`} fill sizes="96px" className="object-cover" />
                       </button>
                     ))}
                   </div>
@@ -329,7 +330,7 @@ export function YachtHero({ yacht }: { yacht: Yacht }) {
                   transition={{ duration: 0.65 }}
                   className="absolute inset-0"
                 >
-                  <Image src={yacht.gallery[activeImg]} alt={`${yacht.title} view ${activeImg + 1}`} fill priority className="object-cover" />
+                  <Image src={yacht.gallery[activeImg]} alt={`${yacht.title} view ${activeImg + 1}`} fill priority sizes="(max-width: 1024px) 100vw, 60vw" className="object-cover" />
                 </motion.div>
               </AnimatePresence>
               <div className="absolute inset-0 bg-linear-to-t from-[#071614]/45 via-transparent to-transparent" />
@@ -344,14 +345,14 @@ export function YachtHero({ yacht }: { yacht: Yacht }) {
             </div>
 
             <button type="button" onClick={next} aria-label="Show next yacht image" className="absolute -bottom-8 -left-4 hidden aspect-[1.25] w-40 overflow-hidden rounded-2xl border-8 border-[#0b1818] bg-[#172727] shadow-[0_18px_45px_rgba(0,0,0,0.3)] sm:block lg:-left-10 lg:w-48">
-              <Image src={yacht.gallery[nextImg]} alt="Next yacht view" fill className="object-cover transition-transform duration-500 hover:scale-105" />
+              <Image src={yacht.gallery[nextImg]} alt="Next yacht view" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform duration-500 hover:scale-105" />
               <span className="absolute inset-x-3 bottom-3 text-left text-[9px] font-medium uppercase tracking-[0.16em] text-white drop-shadow-md">Next view</span>
             </button>
           </div>
           <div className="mt-12 flex justify-end gap-2">
             {yacht.gallery.map((image, index) => (
               <button key={image} type="button" onClick={() => setActiveImg(index)} aria-label={`Show yacht image ${index + 1}`} className={`relative h-12 w-16 overflow-hidden rounded-lg transition ${activeImg === index ? 'ring-2 ring-[#a8865c] ring-offset-2 ring-offset-[#0b1818]' : 'opacity-50 hover:opacity-100'}`}>
-                <Image src={image} alt="" fill className="object-cover" />
+                <Image src={image} alt="" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
               </button>
             ))}
           </div>

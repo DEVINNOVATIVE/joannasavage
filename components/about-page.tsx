@@ -48,7 +48,7 @@ export function AboutPage() {
         <div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2 lg:gap-24">
           <Reveal y={30}>
             <div className="relative mx-auto aspect-[0.78] w-full max-w-[440px] overflow-hidden rounded-[2rem] shadow-[0_30px_80px_rgba(7,20,18,0.16)]">
-              <Image src={portraitImage} alt="Joanna Savage" fill className="object-cover grayscale" />
+              <Image src={portraitImage} alt="Joanna Savage" fill sizes="(max-width: 1024px) 100vw, 440px" className="object-cover grayscale" />
             </div>
           </Reveal>
           <Reveal delay={0.15}>
@@ -126,6 +126,7 @@ export function AboutPage() {
                   src={item.image}
                   alt={item.label}
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
@@ -143,7 +144,7 @@ export function AboutPage() {
         <div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2 lg:gap-24">
           <Reveal>
             <div className="relative aspect-[1.5] overflow-hidden rounded-[2rem]">
-              <Image src={consultingImage} alt="Philanthropy and sustainable development" fill className="object-cover" />
+              <Image src={consultingImage} alt="Philanthropy and sustainable development" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
             </div>
           </Reveal>
           <Reveal delay={0.15}>
@@ -179,7 +180,7 @@ export function AboutPage() {
           </Reveal>
           <Reveal delay={0.15}>
             <div className="relative aspect-[1.5] overflow-hidden rounded-[2rem]">
-              <Image src={dubaiImage} alt="Dubai skyline" fill className="object-cover" />
+              <Image src={dubaiImage} alt="Dubai skyline" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
             </div>
           </Reveal>
         </div>
