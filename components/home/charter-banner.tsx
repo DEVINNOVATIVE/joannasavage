@@ -8,7 +8,7 @@
 // const charterImages = [
 //   { src: '/assets/luxury-private-jet.jpg', alt: 'Private jet in flight' },
 //   { src: '/assets/luxury-yacht-.jpg', alt: 'Luxury yacht at sea' },
-//   { src: '/assets/luxury-real-estate (1).jpg', alt: 'Luxury waterfront property' },
+//   { src: '/assets/luxury-real-estate.jpg', alt: 'Luxury waterfront property' },
 // ]
 
 // export function CharterBanner() {
@@ -73,7 +73,7 @@
 // const charterImages = [
 //   { src: '/assets/luxury-private-jet.jpg', alt: 'Private jet in flight', label: 'AVIATION' },
 //   { src: '/assets/luxury-yacht-.jpg', alt: 'Luxury yacht at sea', label: 'YACHTS' },
-//   { src: '/assets/luxury-real-estate (1).jpg', alt: 'Luxury waterfront property', label: 'PROPERTY' },
+//   { src: '/assets/luxury-real-estate.jpg', alt: 'Luxury waterfront property', label: 'PROPERTY' },
 //    { src: '/assets/Yacht.jpeg', alt: 'Yacht', label: 'PROPERTY' },
 // ]
 
@@ -208,7 +208,7 @@ import { Eyebrow } from '../shared/eyebrow'
 const charterImages = [
   { src: '/assets/luxury-private-jet.jpg', alt: 'Private jet in flight', label: 'AVIATION' },
   { src: '/assets/luxury-yacht-.jpg', alt: 'Luxury yacht at sea', label: 'YACHTS' },
-  { src: '/assets/luxury-real-estate (1).jpg', alt: 'Luxury waterfront property', label: 'PROPERTY' },
+  { src: '/assets/luxury-real-estate.jpg', alt: 'Luxury waterfront property', label: 'PROPERTY' },
   { src: '/assets/Yacht.jpeg', alt: 'Yacht', label: 'PROPERTY' },
 ]
 

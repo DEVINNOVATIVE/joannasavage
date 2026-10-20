@@ -8,7 +8,7 @@ import { Eyebrow } from '../shared/eyebrow'
 
 const aviationImage = '/assets/luxury-private-jet.jpg'
 const yachtImage = '/assets/luxury-yacht-.jpg'
-const realEstateImage = '/assets/luxury-real-estate (1).jpg'
+const realEstateImage = '/assets/luxury-real-estate.jpg'
 
 const services = [
   {

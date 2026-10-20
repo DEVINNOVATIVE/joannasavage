@@ -12,7 +12,7 @@ const portraitImage = '/assets/joanna-savage-black.jpg'
 const dubaiImage = '/assets/luxury-dubai.jpg'
 const yachtImage = '/assets/luxury-yacht-.jpg'
 const jetImage = '/assets/luxury-private-jet.jpg'
-const realEstateImage = '/assets/luxury-real-estate (1).jpg'
+const realEstateImage = '/assets/luxury-real-estate.jpg'
 const consultingImage = '/assets/proptech-page.jpg'
 
 const careerHighlights = [

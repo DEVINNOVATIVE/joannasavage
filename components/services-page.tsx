@@ -9,7 +9,7 @@ import { Reveal } from './shared/reveal'
 const jetMain = '/assets/joanna-savage-private-plane.jpg'
 const yachtMain = '/assets/Yacht.jpeg'
 const propertyMain = '/assets/luxury-real-estate-1.jpg'
-const propertySecondary = '/assets/luxury-real-estate (1).jpg'
+const propertySecondary = '/assets/luxury-real-estate.jpg'
 
 const charterVideo = {
   mp4: 'https://joannasavage.com/wp-content/themes/jo-savage/video/view-from-copter.mp4',
