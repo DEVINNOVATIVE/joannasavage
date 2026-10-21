@@ -69,7 +69,7 @@ export function ContactPage() {
             <div className="overflow-hidden rounded-[2rem] bg-[#071412] text-white shadow-[0_24px_70px_rgba(7,20,18,0.18)]">
               <div className="relative h-56 overflow-hidden">
                 <Image
-                  src="/assets/joanna-savage-black.jpg"
+                  src="/assets/savageblack.jpg"
                   alt="Joanna Savage"
                   fill
                   sizes="(max-width: 1024px) 100vw, 420px"

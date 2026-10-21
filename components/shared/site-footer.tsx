@@ -18,7 +18,7 @@ export function SiteFooter() {
           <div>
             <Link href="/" aria-label="Joanna Savage home" className="inline-block">
               <Image
-                src="/assets/js logo.png"
+                src="/assets/jslogo.png"
                 alt="Joanna Savage logo"
                 width={270}
                 height={90}

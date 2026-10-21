@@ -48,7 +48,7 @@ export function SiteHeader({ transparent = true }: { transparent?: boolean }) {
           className={`relative z-50 shrink-0 transition-opacity ${open ? 'pointer-events-none opacity-0' : 'opacity-100'}`}
         >
           <Image
-            src="/assets/js logo.png"
+            src="/assets/jslogo.png"
             alt="Joanna Savage"
             width={270}
             height={90}
@@ -132,7 +132,7 @@ export function SiteHeader({ transparent = true }: { transparent?: boolean }) {
               <div>
                 <div className="flex items-center justify-between border-b border-white/10 pb-5">
                   <Image
-                    src="/assets/js logo.png"
+                    src="/assets/jslogo.png"
                     alt="Joanna Savage"
                     width={270}
                     height={90}

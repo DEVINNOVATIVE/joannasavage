@@ -8,7 +8,7 @@ import { Eyebrow } from './shared/eyebrow'
 import { Reveal } from './shared/reveal'
 import { ContactCta } from './shared/contact-cta'
 
-const portraitImage = '/assets/joanna-savage-black.jpg'
+const portraitImage = '/assets/savageblack.jpg'
 const dubaiImage = '/assets/luxury-dubai.jpg'
 const yachtImage = '/assets/luxury-yacht-.jpg'
 const jetImage = '/assets/luxury-private-jet.jpg'
